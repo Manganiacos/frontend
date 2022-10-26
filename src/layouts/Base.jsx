@@ -13,6 +13,8 @@ import Checkout from './Checkout';
 import OrdersPage from '../pages/OrdersPage';
 import OrderPage from '../pages/OrderPage';
 
+import FavoritePage from '../pages/FavoritePage';
+
 import LoginPageAuth from '../pages/auth/LoginPageAuth';
 import RegisterPageAuth from '../pages/auth/RegisterPageAuth';
 
@@ -25,6 +27,7 @@ function Base() {
           <Route path="/" element={<HomePage />} />
           <Route path="/store" element={<StorePage />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/favorites" element={<FavoritePage />} />
           <Route path="/cart/*" element={<Checkout />} />
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/order/:id" element={<OrderPage />} />

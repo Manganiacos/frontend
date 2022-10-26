@@ -55,7 +55,7 @@ function Logout() {
       <button
         type="button"
         className="cursor-pointer"
-        onClick={() => setShow(!show)}
+        onMouseEnter={() => setShow(true)}
       >
         <img
           src={img}
@@ -64,7 +64,10 @@ function Logout() {
         />
       </button>
       {show && (
-        <div className="z-50 visible transition duration-300 opacity-100 border rounded-md border-white/20 bg-zinc-800 mt-8 pb-1 w-48 absolute">
+        <div
+          onMouseLeave={() => setShow(false)}
+          className="z-50 visible transition duration-300 opacity-100 border rounded-md border-white/20 bg-zinc-800 mt-12 pb-1 w-48 absolute right-0 -left-[75px]"
+        >
           <span className="cursor-pointer rounded-t text-sm flex flex-col gap-2 font-normal leading-3 tracking-normal pt-4 pb-3 mb-1 bg-black/50 text-white px-3">
             <h1>{name}</h1>
             <h1>{email}</h1>
@@ -80,10 +83,12 @@ function Logout() {
                 <h1 className="font-normal text-xs ">Mis Compras</h1>
               </span>
             </Link>
-            <span className="cursor-pointer flex flex-row gap-1 items-center px-2 text-white/80 fill-white/80 hover:fill-white hover:text-white">
-              <Favorite />
-              <h1 className="font-normal text-xs ">Mis Favoritos</h1>
-            </span>
+            <Link to="/favorites">
+              <span className="cursor-pointer flex flex-row gap-1 items-center px-2 text-white/80 fill-white/80 hover:fill-white hover:text-white">
+                <Favorite />
+                <h1 className="font-normal text-xs ">Mis Favoritos</h1>
+              </span>
+            </Link>
             <button
               type="button"
               onClick={logoutHandler}

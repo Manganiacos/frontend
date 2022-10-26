@@ -12,7 +12,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import Shipping from '../assets/svg/fontawesome/cart';
 import Load from '../assets/svg/load';
-
+import Info from '../assets/svg/info';
+import NequiIcon from '../assets/svg/logos/nequi';
 import PayPal from '../components/PayPal';
 
 import {
@@ -24,6 +25,7 @@ import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET
 } from '../constants/orderConstants';
+import Nequi from '../components/Nequi';
 
 function OrderPage() {
   const dispatch = useDispatch();
@@ -237,10 +239,25 @@ function OrderPage() {
             )}
             {order.paymentMethod === 'nequi' && (
               <>
-                {/* <h1 className="text-sm text-white">
-                  Contacta con nosotros por whatsapp para realizar el pago.
-                </h1>
-                <hr className="border-white/20 my-5" /> */}
+                <div className="flex flex-col gap-2">
+                  <span className="flex flex-row gap-1 items-center">
+                    <Info className="fill-white/80" />
+                    <h1 className="text-white/80 text-xs">
+                      Por favor, envianos el comprobante de pago lo mas rapido
+                      posible.
+                    </h1>
+                  </span>
+                  <span className="flex flex-row gap-1 items-center">
+                    <NequiIcon className="w-5 h-5" />
+                    <h1 className="text-white/80 text-xs">
+                      Numero de cuenta: 310 5008660
+                    </h1>
+                  </span>
+                  <span className="flex justify-center items-center">
+                    <Nequi />
+                  </span>
+                </div>
+                <hr className="border-white/20 my-5" />
               </>
             )}
           </div>
