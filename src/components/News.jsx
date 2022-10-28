@@ -157,9 +157,11 @@ function News() {
                 >
                   <SplideTrack>
                     {filter.map((product) => (
-                      <SplideSlide>
-                        <Card product={product} />
-                      </SplideSlide>
+                      <div key={product._id}>
+                        <SplideSlide>
+                          <Card product={product} />
+                        </SplideSlide>
+                      </div>
                     ))}
                   </SplideTrack>
 

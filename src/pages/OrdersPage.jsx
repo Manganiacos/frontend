@@ -62,7 +62,7 @@ function OrdersPage() {
     return `${day} de ${month} ${year}`;
   };
 
-  console.log(formatDate('2022-10-25T02:02:50.850204Z'));
+  // console.log(formatDate('2022-10-25T02:02:50.850204Z'));
 
   return (
     <section className="container mx-auto px-96 pt-8 pb-56">
@@ -205,6 +205,7 @@ function OrdersPage() {
                     <div className="grid grid-cols-4 gap-3">
                       {order.orderItems.map((item) => (
                         <img
+                          key={item}
                           src={item.image}
                           alt={item.name}
                           className="w-16 h-16 rounded-md object-cover"

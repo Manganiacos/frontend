@@ -106,7 +106,7 @@ function PaymentPage() {
           <label
             htmlFor="paypal"
             id="paypalId"
-            className="flex flex-row gap-2 w-full px-4 py-2 justify-center items-center border border-white/20 hover:border-white/40 rounded-lg"
+            className="cursor-pointer flex flex-row gap-2 w-full px-4 py-2 justify-center items-center border border-white/20 hover:border-white/40 rounded-lg"
           >
             <Paypal className="fill-white/80 w-4" />
             <h1 className="text-white/80 hover:text-white text-sm">
@@ -127,7 +127,7 @@ function PaymentPage() {
           <label
             htmlFor="whatsapp"
             id="whatsappId"
-            className="flex flex-row gap-2 w-full px-4 py-2 justify-center items-center border border-white/20 hover:border-white/40 rounded-lg"
+            className="cursor-pointer flex flex-row gap-2 w-full px-4 py-2 justify-center items-center border border-white/20 hover:border-white/40 rounded-lg"
           >
             <Whatsapp className="fill-white/80 w-4" />
             <h1 className="text-white/80 hover:text-white text-sm">
@@ -148,7 +148,7 @@ function PaymentPage() {
           <label
             htmlFor="nequi"
             id="nequiId"
-            className="flex flex-row gap-2 w-full px-4 py-2 justify-center items-center border border-white/20 hover:border-white/40 rounded-lg"
+            className="cursor-pointer flex flex-row gap-2 w-full px-4 py-2 justify-center items-center border border-white/20 hover:border-white/40 rounded-lg"
           >
             <Nequi className="fill-white/80 w-5 h-5" />
             <h1 className="text-white/80 hover:text-white text-sm">
@@ -159,10 +159,10 @@ function PaymentPage() {
         {paymentMethod ? (
           <button
             type="submit"
-            className="text-xs text-white px-3 py-2 border rounded-md border-white/20 bg-zinc-800 w-64 flex justify-center items-center"
+            className="cursor-pointer text-xs text-white px-3 py-2 border rounded-md border-white/20 bg-zinc-800 w-64 flex justify-center items-center"
           >
             {!formData && (
-              <h1 className="text-white/80 text-sm font-normal">
+              <h1 className="text-white/80 hover:text-white text-sm font-normal">
                 Siguiente paso (Realizar pedido)
               </h1>
             )}

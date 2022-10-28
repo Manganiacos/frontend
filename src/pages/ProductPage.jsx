@@ -8,6 +8,7 @@ import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 
 import Rating from '../components/Rating';
 import SEO from '../components/SEO';
+import Comment from '../components/Comment';
 
 import Book from '../assets/svg/book';
 import Home from '../assets/svg/home';
@@ -171,11 +172,22 @@ function ProductPage() {
                 </button>
               </span>
             )}
+            {product.countInStock === 0 && (
+              <h1 className="text-white/80 font-normal text-sm text-center px-3 py-1 border rounded-md border-white/20 bg-zinc-800">
+                Lo siento pero este producto no está disponible en este momento
+              </h1>
+            )}
 
             <hr className="border-zinc-800/80" />
+            <div className="flex flex-col gap-2">
+              <h1 className="text-white/80 font-bold text-sm flex flex-row gap-1">
+                Comentarios
+              </h1>
+              <Comment />
+            </div>
           </div>
           <div className="col-span-1 flex flex-col items-center gap-4 relative">
-            <span className="z-40 absolute bg-zinc-900 bg-opacity-90 right-0 left-[24em] top-[2.5em] w-56 rotate-45 overflow-clip z-1 flex justify-center items-center">
+            {/* <span className="z-40 absolute bg-zinc-900 bg-opacity-90 right-0 left-[24em] top-[2.5em] w-56 rotate-45 overflow-clip z-1 flex justify-center items-center">
               <h1 className="text-opacity-100">
                 <span className="text-white/80 font-normal text-sm">
                   {product.countInStock >= 2 && product.countInStock <= 5
@@ -188,7 +200,7 @@ function ProductPage() {
                   )}
                 </span>
               </h1>
-            </span>
+            </span> */}
             <img
               src={product.image}
               alt={product.name}
@@ -197,24 +209,25 @@ function ProductPage() {
             <span className="flex justify-between flex-row gap-4 border border-white/20 bg-zinc-800 p-4 rounded-lg">
               <div className="flex flex-col gap-2 items-center">
                 <ShippingCart className="fill-white" />
-                <h1 className="text-white text-sm font-normal tracking-normal capitalize">
+                <h1 className="text-white text-xs font-normal tracking-normal capitalize">
                   Envíos a todo el país
                 </h1>
               </div>
               <div className="flex flex-col gap-2 items-center">
                 <Shield className="fill-white" />
-                <h1 className="text-white text-sm font-normal tracking-normal capitalize">
+                <h1 className="text-white text-xs font-normal tracking-normal capitalize">
                   Pago Seguro
                 </h1>
               </div>
               <div className="order-last flex flex-col gap-2 items-center ">
                 <Original className="fill-white" />
-                <h1 className="text-white text-sm font-normal tracking-normal capitalize">
+                <h1 className="text-white text-xs font-normal tracking-normal capitalize">
                   Producto Original
                 </h1>
               </div>
             </span>
           </div>
+          <div className="col-span-1 border">a</div>
         </div>
       </section>
     </>

@@ -41,7 +41,7 @@ function OrderPage() {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, error, loading } = orderDetails;
 
-  console.log(order);
+  // console.log(order);
 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
@@ -121,7 +121,7 @@ function OrderPage() {
   ) : error ? (
     <div>{error}</div>
   ) : (
-    <section className="container mx-auto px-96 pt-8 h-full pb-56">
+    <section className="container lg:mx-auto xl:px-96 pt-8 h-full pb-56">
       <div className="border rounded-md border-white/20 bg-zinc-800 p-4">
         <div className="flex justify-between items-start">
           {!order.isPaid && (
@@ -199,7 +199,7 @@ function OrderPage() {
         <span>
           <div className="grid grid-cols-2 gap-2">
             {order.orderItems.map((item) => (
-              <div className="flex flex-row gap-2 items-center">
+              <div key={item._id} className="flex flex-row gap-2 items-center">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -254,7 +254,7 @@ function OrderPage() {
                     </h1>
                   </span>
                   <span className="flex justify-center items-center">
-                    <Nequi />
+                    <Nequi order={order} />
                   </span>
                 </div>
                 <hr className="border-white/20 my-5" />

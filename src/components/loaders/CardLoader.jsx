@@ -22,6 +22,7 @@ function CardLoader() {
       <div className="col-span-3 grid grid-cols-4 gap-4">
         {cards.map((card) => (
           <ContentLoader
+            key={card}
             id={card}
             viewBox="0 0 274 356"
             className="col-span-1"

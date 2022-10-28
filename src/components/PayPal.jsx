@@ -62,6 +62,7 @@ function PayPal({ amount, orderDetails, orderPay, orderId }) {
 
   const onApprove = async (data, actions) => {
     const order = await actions.order.capture();
+    console.log(order);
     successPaymentHandler(order);
   };
 

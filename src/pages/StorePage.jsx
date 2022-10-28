@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
@@ -133,7 +134,7 @@ function StorePage() {
           </div>
           <div className="col-span-3 grid grid-cols-4 justify-center gap-4">
             {products.map((product) => (
-              <div className="col-span-1">
+              <div key={product._id} className="col-span-1">
                 <Card product={product} />
               </div>
             ))}
