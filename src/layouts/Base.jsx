@@ -18,6 +18,8 @@ import FavoritePage from '../pages/FavoritePage';
 import LoginPageAuth from '../pages/auth/LoginPageAuth';
 import RegisterPageAuth from '../pages/auth/RegisterPageAuth';
 
+import TestPage from '../pages/TestPage';
+
 function Base() {
   return (
     <main className="bg-zinc-900 h-full">
@@ -25,6 +27,7 @@ function Base() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/test" element={<TestPage />} />
           <Route path="/store" element={<StorePage />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/favorites" element={<FavoritePage />} />

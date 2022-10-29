@@ -36,32 +36,22 @@ function Card({ product }) {
     <>
       <section className="relative rounded-md bg-black/30 shadow-lg p-2 shadow-black/30 overflow-hidden">
         <div className="flex justify-center items-center relative py-4 px-12">
-          {/* <span className="z-40 absolute bg-zinc-900 bg-opacity-90 right-0 left-[6em] top-[2.5em] w-56 rotate-45 overflow-clip z-1 flex justify-center items-center">
-            <h1 className="text-opacity-100">
-              <span className="text-white/80 font-normal text-xs">
-                {product.countInStock >= 2 && product.countInStock <= 5
-                  ? `Últimas ${product.countInStock} unidades`
-                  : ''}
+          {product.countInStock > 5 ? (
+            ''
+          ) : (
+            <span className="z-40 absolute px-3 py-1 border rounded-md border-white/20 bg-zinc-800 top-4 right-4">
+              <h1 className="text-white/80 font-normal text-xs">
+                {product.countInStock >= 2 &&
+                  product.countInStock <= 5 &&
+                  `Últimas ${product.countInStock} unidades`}
 
                 {product.countInStock === 1 && `Última unidad`}
                 {product.countInStock === 0 && (
                   <span className="text-red-400/80">Agotado</span>
                 )}
-              </span>
-            </h1>
-          </span> */}
-          <span className="z-40 absolute px-3 py-1 border rounded-md border-white/20 bg-zinc-800 top-4 right-4">
-            <h1 className="text-white/80 font-normal text-xs">
-              {product.countInStock >= 2 && product.countInStock <= 5
-                ? `Últimas ${product.countInStock} unidades`
-                : ''}
-
-              {product.countInStock === 1 && `Última unidad`}
-              {product.countInStock === 0 && (
-                <span className="text-red-400/80">Agotado</span>
-              )}
-            </h1>
-          </span>
+              </h1>
+            </span>
+          )}
 
           <Link to={`/product/${product._id}`}>
             <img

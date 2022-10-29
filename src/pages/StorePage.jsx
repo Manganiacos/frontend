@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 import Card from '../components/Card';
+// algolia import
 
 import Clean from '../assets/svg/clean';
 import Settings from '../assets/svg/settings';
@@ -22,6 +23,7 @@ function StorePage() {
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
+
   return (
     <>
       <SEO title="Tienda Comics y Mangas" description="Manganiacos" />
