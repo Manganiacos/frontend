@@ -13,14 +13,14 @@ function Toogle({ options, value, selectToggle }) {
         value={value}
         className="flex flex-row gap-2"
       >
-        {options.map(({ label, id, value }) => (
+        {options.map(({ _id, name }) => (
           <label
-            key={id}
-            value={value}
-            htmlFor={id}
+            key={_id}
+            value={name}
+            htmlFor={_id}
             className="text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
           >
-            {label}
+            {name}
           </label>
         ))}
       </button>

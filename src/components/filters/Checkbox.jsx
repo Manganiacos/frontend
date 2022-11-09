@@ -8,7 +8,7 @@ function Checkbox({ changeChecked, cuisine }) {
   const { checked, label, id } = cuisine;
 
   return (
-    <span className="flex items-center mb-4">
+    <span>
       <input
         type="checkbox"
         id={id}
