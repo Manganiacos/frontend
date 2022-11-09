@@ -11,12 +11,10 @@ import Settings from '../assets/svg/settings';
 import Clean from '../assets/svg/clean';
 
 function FilterPanel({
-  selectedCategory,
-  selectCategory,
-  selectedPrice,
-  cuisines,
-  changeChecked,
-  changePrice
+  selectedEditorial,
+  selectEditorial,
+  categories,
+  changeChecked
 }) {
   return (
     <div className="col-span-1 bg-black/30 rounded-md flex flex-col h-[340px]">
@@ -38,10 +36,10 @@ function FilterPanel({
           Categorias
         </h1>
         <span className="flex flex-row gap-2">
-          {cuisines.map((cuisine) => (
+          {categories.map((category) => (
             <Checkbox
-              key={cuisine.id}
-              cuisine={cuisine}
+              key={category.id}
+              category={category}
               changeChecked={changeChecked}
             />
           ))}
@@ -54,8 +52,8 @@ function FilterPanel({
         </h1>
         <Toogle
           options={editorialList}
-          value={selectedCategory}
-          selectToggle={selectCategory}
+          value={selectedEditorial}
+          selectToggle={selectEditorial}
         />
       </span>
       <hr className="border-zinc-800" />

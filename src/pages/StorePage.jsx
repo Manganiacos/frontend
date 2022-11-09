@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable radix */
 /* eslint-disable no-unused-expressions */
@@ -26,55 +28,51 @@ function StorePage() {
   const productList = useSelector((state) => state.productList);
   const { error, loading, products } = productList;
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedEditorial, setSelectedEditorial] = useState(null);
 
-  // const [cuisines, setCuisines] = useState([
-  //   { id: 1, checked: false, label: 'Josei' },
-  //   { id: 2, checked: false, label: 'Seinen' },
-  //   { id: 3, checked: false, label: 'Shojo' },
-  //   { id: 4, checked: false, label: 'Shonen' },
-  //   { id: 5, checked: false, label: 'Kodomo' }
-  // ]);
-
-  const [cuisines, setCuisines] = useState([
-    { id: 1, checked: false, label: 'American' },
-    { id: 2, checked: false, label: 'Chinese' },
-    { id: 3, checked: false, label: 'Italian' }
+  const [categories, setCategories] = useState([
+    { id: 1, checked: false, label: 'Josei' },
+    { id: 2, checked: false, label: 'Seinen' },
+    { id: 3, checked: false, label: 'Shojo' },
+    { id: 4, checked: false, label: 'Shonen' },
+    { id: 5, checked: false, label: 'Kodomo' }
   ]);
 
   const [list, setList] = useState(dataList);
   const [resultsFound, setResultsFound] = useState(true);
   const [searchInput, setSearchInput] = useState('');
 
-  const handleSelectCategory = (event, value) =>
-    !value ? null : setSelectedCategory(value);
+  const handleSelectEditorial = (event, value) =>
+    !value ? null : setSelectedEditorial(value);
 
   const handleChangeChecked = (id) => {
-    const cusinesStateList = cuisines;
-    const changeCheckedCuisines = cusinesStateList.map((item) =>
+    const cusinesStateList = categories;
+    const changeCheckedCategories = cusinesStateList.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
-    setCuisines(changeCheckedCuisines);
+    setCategories(changeCheckedCategories);
   };
 
   const applyFilters = () => {
     let updatedList = dataList;
 
     // Editorial Filter
-    if (selectedCategory) {
+    if (selectedEditorial) {
       updatedList = updatedList.filter(
-        (item) => item.category === selectedCategory
+        (item) => item.editorial === selectedEditorial
       );
     }
 
     // Category Filter
-    const cuisinesChecked = cuisines
+    const categoriesChecked = categories
       .filter((item) => item.checked)
       .map((item) => item.label.toLowerCase());
 
-    if (cuisinesChecked.length) {
+    console.log(categoriesChecked);
+
+    if (categoriesChecked.length) {
       updatedList = updatedList.filter((item) =>
-        cuisinesChecked.includes(item.cuisine)
+        categoriesChecked.includes(item.category)
       );
     }
 
@@ -95,16 +93,16 @@ function StorePage() {
   useEffect(() => {
     dispatch(listProducts());
     applyFilters();
-  }, [dispatch, selectedCategory, cuisines, searchInput]);
+  }, [dispatch, selectedEditorial, categories, searchInput]);
 
   return (
     <>
       <SEO title="Tienda Comics y Mangas" description="Manganiacos" />
-      <section className="container mx-auto grid grid-cols-4 gap-6 pt-12 pb-56">
+      <section className="container mx-auto grid grid-cols-4 gap-6 pt-12 pb-56 h-screen">
         <FilterPanel
-          selectedCategory={selectedCategory}
-          selectCategory={handleSelectCategory}
-          cuisines={cuisines}
+          selectedEditorial={selectedEditorial}
+          selectEditorial={handleSelectEditorial}
+          categories={categories}
           changeChecked={handleChangeChecked}
         />
 
@@ -115,22 +113,22 @@ function StorePage() {
               changeInput={(e) => setSearchInput(e.target.value)}
             />
           </span>
-          <div className="grid grid-cols-4 justify-center gap-4">
+          <div>
             {resultsFound ? (
-              <ListProduct list={list} />
+              // <>
+              //   {loading ? (
+              //     <CardLoader />
+              //   ) : error ? (
+              //     <Error />
+              //   ) : (
+              //     <ListProduct list={products} />
+              //   )}
+              // </>
+              <ListProduct list={products} />
             ) : (
               <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl h-80">
                 No se encontraron resultados para tu búsqueda
               </span>
-            )}
-            {loading ? (
-              // <CardLoader />
-              'loading ....'
-            ) : error ? (
-              <Error />
-            ) : (
-              //
-              ''
             )}
           </div>
         </section>

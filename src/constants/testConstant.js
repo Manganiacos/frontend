@@ -1,11 +1,27 @@
 export const editorialList = [
   {
     _id: 1,
-    name: 'norma'
+    name: 'panini'
   },
   {
     _id: 2,
+    name: 'ecc ediciones'
+  },
+  {
+    _id: 3,
+    name: 'kamite'
+  },
+  {
+    _id: 4,
+    name: 'dolmen'
+  },
+  {
+    _id: 5,
     name: 'ivrea'
+  },
+  {
+    _id: 6,
+    name: 'norma'
   }
 ];
 
@@ -13,13 +29,19 @@ export const dataList = [
   {
     _id: 1,
     name: 'lounge resort',
-    category: 'norma',
-    cuisine: 'american'
+    editorial: 'norma',
+    category: 'shonen'
   },
   {
     _id: 2,
     name: 'door urban',
-    category: 'ivrea',
-    cuisine: 'italian'
+    editorial: 'ivrea',
+    category: 'josei'
+  },
+  {
+    _id: 3,
+    name: 'door urban',
+    editorial: 'kamite',
+    category: 'seinen'
   }
 ];

@@ -4,8 +4,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function Checkbox({ changeChecked, cuisine }) {
-  const { checked, label, id } = cuisine;
+function Checkbox({ changeChecked, category }) {
+  const { checked, label, id } = category;
 
   return (
     <span>

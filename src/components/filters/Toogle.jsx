@@ -18,7 +18,7 @@ function Toogle({ options, value, selectToggle }) {
             key={_id}
             value={name}
             htmlFor={_id}
-            className="text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
+            className="capitalize text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
           >
             {name}
           </label>
