@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-console */
@@ -20,6 +21,7 @@ import SEO from '../components/SEO';
 
 import CardLoader from '../components/loaders/CardLoader';
 import ListProduct from '../components/list/ListProduct';
+import Filter from '../assets/svg/filter';
 
 function StorePage() {
   const dispatch = useDispatch();
@@ -124,11 +126,19 @@ function StorePage() {
           handleValue={handleValue}
         />
         <section className="col-span-3 flex flex-col gap-8">
-          <span className="flex w-full">
+          <span className="flex gap-4 w-full items-center">
             <SearchBar
               value={searchInput}
               changeInput={(e) => setSearchInput(e.target.value)}
             />
+            <div className="relative">
+              <button
+                type="button"
+                className="py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
+              >
+                <Filter className="fill-white/80" />
+              </button>
+            </div>
           </span>
           <div>
             {resultsFound ? (
