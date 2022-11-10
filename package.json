@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@algolia/autocomplete-core": "1.7.2",
+    "@headlessui/react": "^1.7.4",
     "@splidejs/react-splide": "^0.7.8",
     "@splidejs/splide": "^4.0.7",
     "@testing-library/jest-dom": "^5.16.5",
@@ -22,6 +23,7 @@
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-instantsearch-dom": "6.38.0",
+    "react-paginate": "^8.1.4",
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",

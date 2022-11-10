@@ -10,7 +10,6 @@
 import React, { useState, useEffect } from 'react';
 
 function Toogle({ options, value, select, selectToggle }) {
-  console.log(select);
   return (
     <div className="flex flex-row gap-2 items-center mb-4" value={value}>
       {options.map(({ _id, name }) => (

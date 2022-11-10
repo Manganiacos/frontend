@@ -14,7 +14,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { logout } from '../actions/userActions';
 
-import Menu from '../assets/svg/menu';
+import Category from './Category';
+
 import Location from '../assets/svg/location';
 import More from '../assets/svg/more';
 import Contact from '../assets/svg/contact';
@@ -147,10 +148,7 @@ function Navbar() {
         </div>
         <hr className="border-zinc-800" />
         <div className="grid grid-cols-3 py-3 items-center container mx-auto px-8 xl:px-0">
-          <span className="col-span-3 xl:col-span-1 flex flex-row gap-2 justify-start items-center">
-            <Menu className="fill-white" />
-            <h1 className="text-sm text-white font-normal">Categorias</h1>
-          </span>
+          <Category />
           <span className="col-span-3 xl:col-span-1 flex flex-row gap-8 justify-center">
             <Link to="/store" className="text-sm text-white">
               Los más vendidos

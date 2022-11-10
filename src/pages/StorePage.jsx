@@ -18,6 +18,7 @@ import SearchBar from '../components/filters/SearchBar';
 import SEO from '../components/SEO';
 
 // import Error from '../components/Error';
+import Paginate from '../components/filters/Paginate';
 
 import CardLoader from '../components/loaders/CardLoader';
 import ListProduct from '../components/list/ListProduct';
@@ -28,7 +29,25 @@ function StorePage() {
   const productList = useSelector((state) => state.productList);
   const { error, loading, products } = productList;
 
-  const [list, setList] = useState(products);
+  const itemsPerPage = 12;
+
+  // const [currentItems, setCurrentItems] = useState([]);
+  const [itemOffset, setItemOffset] = useState(0);
+
+  const endOffset = itemOffset + itemsPerPage;
+  const currentItems = products.slice(itemOffset, endOffset);
+
+  const pageCount = Math.ceil(products.length / itemsPerPage);
+
+  const [list, setList] = useState(currentItems);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % products.length;
+    setItemOffset(newOffset);
+    setList(currentItems);
+  };
+
+  // console.log(list);
 
   const [selectedEditorial, setSelectedEditorial] = useState(null);
 
@@ -51,7 +70,7 @@ function StorePage() {
   const handleSelectEditorial = (event, value) =>
     !value ? null : setSelectedEditorial(value);
 
-  console.log(selectedEditorial);
+  // console.log(selectedEditorial);
 
   const handleChangeChecked = (id) => {
     const categoriesStateList = categories;
@@ -62,7 +81,7 @@ function StorePage() {
   };
 
   const handleClearFilters = () => {
-    setList(products);
+    setList(currentItems);
     setCategories([
       { id: 1, checked: false, label: 'josei' },
       { id: 2, checked: false, label: 'seinen' },
@@ -74,7 +93,7 @@ function StorePage() {
   };
 
   const applyFilters = () => {
-    let updatedList = products;
+    let updatedList = currentItems;
 
     // Editorial Filter
     if (selectedEditorial) {
@@ -143,13 +162,22 @@ function StorePage() {
           <div>
             {resultsFound ? (
               <>
-                {loading ? (
+                {/* {loading ? (
                   <CardLoader />
                 ) : error ? (
                   <h1>{error}</h1>
                 ) : (
+                  
+                )} */}
+                <div className="flex flex-col gap-8 items-center">
                   <ListProduct list={list} />
-                )}
+                  {pageCount > 1 && (
+                    <Paginate
+                      handlePageClick={handlePageClick}
+                      pageCount={pageCount}
+                    />
+                  )}
+                </div>
               </>
             ) : (
               <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl h-80">
