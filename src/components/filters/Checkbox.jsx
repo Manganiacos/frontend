@@ -19,7 +19,11 @@ function Checkbox({ changeChecked, category }) {
       />
       <label
         htmlFor={id}
-        className="text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
+        className={
+          checked
+            ? 'capitalize text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer'
+            : 'capitalize text-xs text-white/50 hover:text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer'
+        }
       >
         {label}
       </label>

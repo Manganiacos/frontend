@@ -1,10 +1,8 @@
 /* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable radix */
 /* eslint-disable no-unused-expressions */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,13 +10,13 @@ import { listProducts } from '../actions/productActions';
 import Card from '../components/Card';
 import FilterPanel from '../components/FilterPanel';
 import SearchBar from '../components/filters/SearchBar';
-import { dataList } from '../constants/testConstant';
+// import { dataList } from '../constants/testConstant';
 
-import Clean from '../assets/svg/clean';
-import Settings from '../assets/svg/settings';
+// import Clean from '../assets/svg/clean';
+// import Settings from '../assets/svg/settings';
 import SEO from '../components/SEO';
 
-import Error from '../components/Error';
+// import Error from '../components/Error';
 
 import CardLoader from '../components/loaders/CardLoader';
 import ListProduct from '../components/list/ListProduct';
@@ -28,44 +26,53 @@ function StorePage() {
   const productList = useSelector((state) => state.productList);
   const { error, loading, products } = productList;
 
+  const [list, setList] = useState(products);
+
   const [selectedEditorial, setSelectedEditorial] = useState(null);
 
+  const handleValue = (e) => {
+    e.preventDefault();
+    setSelectedEditorial(e.target.value);
+  };
+
   const [categories, setCategories] = useState([
-    { id: 1, checked: false, label: 'Josei' },
-    { id: 2, checked: false, label: 'Seinen' },
-    { id: 3, checked: false, label: 'Shojo' },
-    { id: 4, checked: false, label: 'Shonen' },
-    { id: 5, checked: false, label: 'Kodomo' }
+    { id: 1, checked: false, label: 'josei' },
+    { id: 2, checked: false, label: 'seinen' },
+    { id: 3, checked: false, label: 'shojo' },
+    { id: 4, checked: false, label: 'shonen' },
+    { id: 5, checked: false, label: 'kodomo' }
   ]);
 
-  const [list, setList] = useState(products);
   const [resultsFound, setResultsFound] = useState(true);
   const [searchInput, setSearchInput] = useState('');
 
   const handleSelectEditorial = (event, value) =>
     !value ? null : setSelectedEditorial(value);
 
+  console.log(selectedEditorial);
+
   const handleChangeChecked = (id) => {
-    const cusinesStateList = categories;
-    const changeCheckedCategories = cusinesStateList.map((item) =>
+    const categoriesStateList = categories;
+    const changeCheckedCategories = categoriesStateList.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
     setCategories(changeCheckedCategories);
   };
 
   const handleClearFilters = () => {
+    setList(products);
     setCategories([
-      { id: 1, checked: false, label: 'Josei' },
-      { id: 2, checked: false, label: 'Seinen' },
-      { id: 3, checked: false, label: 'Shojo' },
-      { id: 4, checked: false, label: 'Shonen' },
-      { id: 5, checked: false, label: 'Kodomo' }
+      { id: 1, checked: false, label: 'josei' },
+      { id: 2, checked: false, label: 'seinen' },
+      { id: 3, checked: false, label: 'shojo' },
+      { id: 4, checked: false, label: 'shonen' },
+      { id: 5, checked: false, label: 'kodomo' }
     ]);
     setSelectedEditorial(null);
   };
 
   const applyFilters = () => {
-    let updatedList = dataList;
+    let updatedList = products;
 
     // Editorial Filter
     if (selectedEditorial) {
@@ -78,8 +85,6 @@ function StorePage() {
     const categoriesChecked = categories
       .filter((item) => item.checked)
       .map((item) => item.label.toLowerCase());
-
-    console.log(categoriesChecked);
 
     if (categoriesChecked.length) {
       updatedList = updatedList.filter((item) =>
@@ -116,8 +121,8 @@ function StorePage() {
           selectEditorial={handleSelectEditorial}
           categories={categories}
           changeChecked={handleChangeChecked}
+          handleValue={handleValue}
         />
-
         <section className="col-span-3 flex flex-col gap-8">
           <span className="flex w-full">
             <SearchBar
@@ -128,14 +133,13 @@ function StorePage() {
           <div>
             {resultsFound ? (
               <>
-                {/* {loading ? (
+                {loading ? (
                   <CardLoader />
                 ) : error ? (
-                  <Error />
+                  <h1>{error}</h1>
                 ) : (
                   <ListProduct list={list} />
-                )} */}
-                <ListProduct list={list} />
+                )}
               </>
             ) : (
               <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl h-80">

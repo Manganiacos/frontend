@@ -116,14 +116,14 @@ function ProductPage() {
               <h1 className="text-white/80 font-bold text-sm flex flex-row gap-1">
                 <Label className="fill-zinc-100" />
                 Categoria:{' '}
-                <span className="font-normal text-white/80">
+                <span className="capitalize font-normal text-white/80">
                   {product.category}
                 </span>
               </h1>
               <h1 className="text-white/80 font-bold text-sm flex flex-row gap-1">
                 <Book className="fill-zinc-100" />
                 Editorial:{' '}
-                <span className="font-normal text-white/80">
+                <span className="capitalize font-normal text-white/80">
                   {product.editorial}
                 </span>
               </h1>

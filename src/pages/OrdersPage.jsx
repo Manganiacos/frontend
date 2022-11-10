@@ -12,6 +12,7 @@ import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import { listMyOrders } from '../actions/orderActions';
 import Search from '../assets/svg/search';
 import Orders from '../components/Orders';
+import SEO from '../components/SEO';
 
 function OrdersPage() {
   const [name, setName] = useState('');
@@ -58,45 +59,48 @@ function OrdersPage() {
   // console.log(formatDate('2022-10-25T02:02:50.850204Z'));
 
   return (
-    <section className="container mx-auto px-96 pt-8 pb-56">
-      <div className="grid grid-cols-4 gap-6">
-        <div className="col-span-4 flex flex-col gap-1">
-          <h1 className="text-2xl text-white/80 font-bold">Tus Compras</h1>
-          <h1 className="text-xs text-white/80 font-normal">
-            Desde aquí puedes ver el estado de tus pedidos y gestionar tus
-            devoluciones.
-          </h1>
+    <>
+      <SEO title="Mis Compras" />
+      <section className="container mx-auto px-96 pt-8 pb-56">
+        <div className="grid grid-cols-4 gap-6">
+          <div className="col-span-4 flex flex-col gap-1">
+            <h1 className="text-2xl text-white/80 font-bold">Tus Compras</h1>
+            <h1 className="text-xs text-white/80 font-normal">
+              Desde aquí puedes ver el estado de tus pedidos y gestionar tus
+              devoluciones.
+            </h1>
+          </div>
+          <div className="col-span-4 flex flex-col gap-2">
+            <h1 className="text-white/80 text-sm">Busca tu pedido</h1>
+            <span className="col-span-1 relative">
+              <input
+                type="text"
+                placeholder="Buscar"
+                className="relative pl-11 w-96 bg-zinc-800/80 placeholder:text-white/80 text-white rounded-md px-4 py-2 text-sm font-normal outline-none"
+              />
+              <Search className="absolute top-1/2 left-3 transform -translate-y-1/2 fill-white/80" />
+            </span>
+          </div>
+          {loadingOrders ? (
+            <h1>
+              <span className="text-white/80 text-sm">Cargando...</span>
+            </h1>
+          ) : errorOrders ? (
+            <h1>
+              <span className="text-white/80 text-sm">{errorOrders}</span>
+            </h1>
+          ) : (
+            <>
+              {orders.map((order) => (
+                <div key={order._id} className="col-span-2">
+                  <Orders order={order} />
+                </div>
+              ))}
+            </>
+          )}
         </div>
-        <div className="col-span-4 flex flex-col gap-2">
-          <h1 className="text-white/80 text-sm">Busca tu pedido</h1>
-          <span className="col-span-1 relative">
-            <input
-              type="text"
-              placeholder="Buscar"
-              className="relative pl-11 w-96 bg-zinc-800/80 placeholder:text-white/80 text-white rounded-md px-4 py-2 text-sm font-normal outline-none"
-            />
-            <Search className="absolute top-1/2 left-3 transform -translate-y-1/2 fill-white/80" />
-          </span>
-        </div>
-        {loadingOrders ? (
-          <h1>
-            <span className="text-white/80 text-sm">Cargando...</span>
-          </h1>
-        ) : errorOrders ? (
-          <h1>
-            <span className="text-white/80 text-sm">{errorOrders}</span>
-          </h1>
-        ) : (
-          <>
-            {orders.map((order) => (
-              <div key={order._id} className="col-span-2">
-                <Orders order={order} />
-              </div>
-            ))}
-          </>
-        )}
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

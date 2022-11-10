@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import { editorialList } from '../constants/testConstant';
 import Slider from './filters/Slider';
 import Toogle from './filters/Toogle';
@@ -15,7 +16,8 @@ function FilterPanel({
   selectedEditorial,
   selectEditorial,
   categories,
-  changeChecked
+  changeChecked,
+  handleValue
 }) {
   return (
     <div className="col-span-1 bg-black/30 rounded-md flex flex-col h-[300px]">
@@ -26,11 +28,16 @@ function FilterPanel({
         </span>
         <button
           type="button"
+          data-tip
+          data-for="clear"
           onClick={clearFilters}
           className="py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
         >
           <Clean className="fill-white/80" />
         </button>
+        <ReactTooltip id="clear" place="left" effect="solid">
+          <span className="text-xs text-white/80">Limpiar filtros</span>
+        </ReactTooltip>
       </span>
       <hr className="border-zinc-800" />
       <span className="flex flex-col gap-4 p-4">
@@ -39,7 +46,8 @@ function FilterPanel({
         </h1>
         <Toogle
           options={editorialList}
-          value={selectedEditorial}
+          select={selectedEditorial}
+          value={handleValue}
           selectToggle={selectEditorial}
         />
       </span>
