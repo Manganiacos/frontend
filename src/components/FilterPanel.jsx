@@ -11,13 +11,14 @@ import Settings from '../assets/svg/settings';
 import Clean from '../assets/svg/clean';
 
 function FilterPanel({
+  clearFilters,
   selectedEditorial,
   selectEditorial,
   categories,
   changeChecked
 }) {
   return (
-    <div className="col-span-1 bg-black/30 rounded-md flex flex-col h-[340px]">
+    <div className="col-span-1 bg-black/30 rounded-md flex flex-col h-[300px]">
       <span className="flex justify-between p-4 items-center">
         <span className="flex flex-row gap-2 items-center">
           <Settings className="fill-white/80" />
@@ -25,10 +26,22 @@ function FilterPanel({
         </span>
         <button
           type="button"
+          onClick={clearFilters}
           className="py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
         >
           <Clean className="fill-white/80" />
         </button>
+      </span>
+      <hr className="border-zinc-800" />
+      <span className="flex flex-col gap-4 p-4">
+        <h1 className="text-sm font-normal tracking-wide text-white/80">
+          Editoriales
+        </h1>
+        <Toogle
+          options={editorialList}
+          value={selectedEditorial}
+          selectToggle={selectEditorial}
+        />
       </span>
       <hr className="border-zinc-800" />
       <span className="flex flex-col gap-4 p-4">
@@ -45,18 +58,8 @@ function FilterPanel({
           ))}
         </span>
       </span>
-      <hr className="border-zinc-800" />
-      <span className="flex flex-col gap-4 p-4">
-        <h1 className="text-sm font-normal tracking-wide text-white/80">
-          Editoriales
-        </h1>
-        <Toogle
-          options={editorialList}
-          value={selectedEditorial}
-          selectToggle={selectEditorial}
-        />
-      </span>
-      <hr className="border-zinc-800" />
+
+      {/* <hr className="border-zinc-800" />
       <span className="flex justify-center p-4 items-center">
         <button
           type="button"
@@ -64,7 +67,7 @@ function FilterPanel({
         >
           Aplicar Filtros
         </button>
-      </span>
+      </span> */}
     </div>
   );
 }

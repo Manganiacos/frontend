@@ -38,7 +38,7 @@ function StorePage() {
     { id: 5, checked: false, label: 'Kodomo' }
   ]);
 
-  const [list, setList] = useState(dataList);
+  const [list, setList] = useState(products);
   const [resultsFound, setResultsFound] = useState(true);
   const [searchInput, setSearchInput] = useState('');
 
@@ -51,6 +51,17 @@ function StorePage() {
       item.id === id ? { ...item, checked: !item.checked } : item
     );
     setCategories(changeCheckedCategories);
+  };
+
+  const handleClearFilters = () => {
+    setCategories([
+      { id: 1, checked: false, label: 'Josei' },
+      { id: 2, checked: false, label: 'Seinen' },
+      { id: 3, checked: false, label: 'Shojo' },
+      { id: 4, checked: false, label: 'Shonen' },
+      { id: 5, checked: false, label: 'Kodomo' }
+    ]);
+    setSelectedEditorial(null);
   };
 
   const applyFilters = () => {
@@ -100,6 +111,7 @@ function StorePage() {
       <SEO title="Tienda Comics y Mangas" description="Manganiacos" />
       <section className="container mx-auto grid grid-cols-4 gap-6 pt-12 pb-56 h-screen">
         <FilterPanel
+          clearFilters={handleClearFilters}
           selectedEditorial={selectedEditorial}
           selectEditorial={handleSelectEditorial}
           categories={categories}
@@ -115,16 +127,16 @@ function StorePage() {
           </span>
           <div>
             {resultsFound ? (
-              // <>
-              //   {loading ? (
-              //     <CardLoader />
-              //   ) : error ? (
-              //     <Error />
-              //   ) : (
-              //     <ListProduct list={products} />
-              //   )}
-              // </>
-              <ListProduct list={products} />
+              <>
+                {/* {loading ? (
+                  <CardLoader />
+                ) : error ? (
+                  <Error />
+                ) : (
+                  <ListProduct list={list} />
+                )} */}
+                <ListProduct list={list} />
+              </>
             ) : (
               <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl h-80">
                 No se encontraron resultados para tu búsqueda
