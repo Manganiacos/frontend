@@ -3,6 +3,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
+import * as Accordion from '@radix-ui/react-accordion';
+import { ChevronDownIcon } from '@radix-ui/react-icons';
 import { editorialList } from '../constants/testConstant';
 import Slider from './filters/Slider';
 import Toogle from './filters/Toogle';
@@ -66,16 +68,6 @@ function FilterPanel({
           ))}
         </span>
       </span>
-
-      {/* <hr className="border-zinc-800" />
-      <span className="flex justify-center p-4 items-center">
-        <button
-          type="button"
-          className="text-sm text-white/80 py-1 px-8 border rounded-md border-white/20 bg-zinc-800"
-        >
-          Aplicar Filtros
-        </button>
-      </span> */}
     </div>
   );
 }

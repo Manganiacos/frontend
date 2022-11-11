@@ -6,6 +6,11 @@
   "dependencies": {
     "@algolia/autocomplete-core": "1.7.2",
     "@headlessui/react": "^1.7.4",
+    "@radix-ui/react-accordion": "^1.0.1",
+    "@radix-ui/react-icons": "^1.1.1",
+    "@radix-ui/react-navigation-menu": "^1.1.1",
+    "@radix-ui/react-select": "^1.1.1",
+    "@radix-ui/react-toast": "^1.1.1",
     "@splidejs/react-splide": "^0.7.8",
     "@splidejs/splide": "^4.0.7",
     "@testing-library/jest-dom": "^5.16.5",

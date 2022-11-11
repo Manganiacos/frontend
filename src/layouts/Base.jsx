@@ -10,6 +10,7 @@ import Navbar from '../components/Navbar';
 import StorePage from '../pages/StorePage';
 import ProductPage from '../pages/ProductPage';
 import Checkout from './Checkout';
+import Admin from './Admin';
 import OrdersPage from '../pages/OrdersPage';
 import OrderPage from '../pages/OrderPage';
 
@@ -32,6 +33,7 @@ function Base() {
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/favorites" element={<FavoritePage />} />
           <Route path="/cart/*" element={<Checkout />} />
+          <Route path="/admin/*" element={<Admin />} />
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/order/:id" element={<OrderPage />} />
           <Route path="/auth/login" element={<LoginPageAuth />} />
