@@ -24,6 +24,7 @@ import MessagesAdmin from '../pages/admin/MessagesAdmin';
 import AnalyticsAdmin from '../pages/admin/AnalyticsAdmin';
 import OrdersAdmin from '../pages/admin/OrdersAdmin';
 import ProfileAdmin from '../pages/admin/ProfileAdmin';
+import EditProductAdmin from '../pages/admin/EditProductAdmin';
 
 import Persona from '../assets/svg/persona';
 import Cerrar from '../assets/svg/cerrar';
@@ -33,9 +34,9 @@ import Orde from '../assets/svg/orde';
 
 function Admin() {
   return (
-    <section className="grid grid-cols-8 gap-4 container mx-auto mt-12 h-screen">
+    <section className="grid grid-cols-8 gap-4 container mx-auto mt-12 pb-96">
       <div className="col-span-2 flex">
-        <section className="flex flex-col w-[300px] border border-l-0 border-t-0 border-b-0 h-[470px] border-zinc-800">
+        <section className="flex flex-col w-[300px] border border-l-0 border-t-0 border-b-0  border-zinc-800">
           <div className="flex flex-col gap-4 px-4 py-4">
             <span className="flex flex-row justify-between items-center">
               <h1 className=" text-white/70 text-sm font-light uppercase tracking-wider">
@@ -126,7 +127,11 @@ function Admin() {
       </div>
       <div className="col-span-6">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route index element={<Dashboard />} />
+          <Route
+            path="inventory/product/:id/edit"
+            element={<EditProductAdmin />}
+          />
           <Route path="analytics" element={<AnalyticsAdmin />} />
           <Route path="inventory" element={<InventoryAdmin />} />
           <Route path="orders" element={<OrdersAdmin />} />

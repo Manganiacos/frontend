@@ -84,9 +84,12 @@ function Address() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/50"
+            style={{
+              backdropFilter: 'blur(5px)'
+            }}
           >
             <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[700px] h-60 bg-zinc-900 rounded-md p-8">
-              <div className="flex justify-between">
+              <div className="flex justify-between items-start">
                 <span className="flex flex-col gap-1">
                   <h1 className="text-white text-lg font-normal">
                     Elige dónde recibir tus compras
