@@ -18,7 +18,13 @@ import More from '../assets/svg/plus';
 import Tienda from '../assets/svg/tienda';
 import Analytics from '../assets/svg/analytics';
 
-import Dashboard from '../pages/admin/Dashboard';
+import Dashboard from '../pages/admin/DashboardAdmin';
+import InventoryAdmin from '../pages/admin/InventoryAdmin';
+import MessagesAdmin from '../pages/admin/MessagesAdmin';
+import AnalyticsAdmin from '../pages/admin/AnalyticsAdmin';
+import OrdersAdmin from '../pages/admin/OrdersAdmin';
+import ProfileAdmin from '../pages/admin/ProfileAdmin';
+
 import Persona from '../assets/svg/persona';
 import Cerrar from '../assets/svg/cerrar';
 import Inventory from '../assets/svg/inventory';
@@ -29,7 +35,7 @@ function Admin() {
   return (
     <section className="grid grid-cols-8 gap-4 container mx-auto mt-12 h-screen">
       <div className="col-span-2 flex">
-        <section className="flex flex-col bg-[#111113] rounded-md w-[300px] h-[500px]">
+        <section className="flex flex-col w-[300px] border border-l-0 border-t-0 border-b-0 h-[470px] border-zinc-800">
           <div className="flex flex-col gap-4 px-4 py-4">
             <span className="flex flex-row justify-between items-center">
               <h1 className=" text-white/70 text-sm font-light uppercase tracking-wider">
@@ -39,14 +45,14 @@ function Admin() {
             </span>
             <Link
               to="/admin/"
-              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
+              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80 cursor-pointer"
             >
               <Tienda className="fill-white/80" />
               <h1 className=" text-white/70 text-sm font-normal ">Tienda</h1>
             </Link>
             <Link
               to="/admin/analytics"
-              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
+              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80 cursor-pointer"
             >
               <Analytics className="fill-white/80" />
               <h1 className=" text-white/70 text-sm font-normal ">
@@ -64,7 +70,7 @@ function Admin() {
             </span>
             <Link
               to="/admin/inventory"
-              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
+              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80 cursor-pointer"
             >
               <Inventory className="fill-white/80" />
               <h1 className=" text-white/70 text-sm font-normal ">
@@ -73,14 +79,14 @@ function Admin() {
             </Link>
             <Link
               to="/admin/orders"
-              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
+              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80  cursor-pointer"
             >
               <Orde className="fill-white/80" />
               <h1 className=" text-white/70 text-sm font-normal ">Ordenes</h1>
             </Link>
             <Link
               to="/admin/messages"
-              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
+              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80  cursor-pointer"
             >
               <Chat className="fill-white/80" />
               <h1 className=" text-white/70 text-sm font-normal ">Mensajes</h1>
@@ -96,7 +102,7 @@ function Admin() {
             </span>
             <Link
               to="/admin/profile"
-              className="flex justify-between gap-2 items-center capitalize text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
+              className="flex justify-between gap-2 items-center capitalize text-xs text-white/80  cursor-pointer"
             >
               <span className="flex flex-row gap-2 items-center">
                 <Persona className="fill-white/80" />
@@ -108,7 +114,7 @@ function Admin() {
             </Link>
             <Link
               to="/admin/"
-              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer"
+              className="flex flex-row gap-2 items-center capitalize text-xs text-white/80  cursor-pointer"
             >
               <Cerrar className="fill-white/80" />
               <h1 className=" text-white/70 text-sm font-normal ">
@@ -121,6 +127,11 @@ function Admin() {
       <div className="col-span-6">
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="analytics" element={<AnalyticsAdmin />} />
+          <Route path="inventory" element={<InventoryAdmin />} />
+          <Route path="orders" element={<OrdersAdmin />} />
+          <Route path="messages" element={<MessagesAdmin />} />
+          <Route path="profile" element={<ProfileAdmin />} />
         </Routes>
       </div>
     </section>
