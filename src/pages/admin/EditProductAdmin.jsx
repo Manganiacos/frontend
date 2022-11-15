@@ -183,7 +183,7 @@ function EditProductAdmin() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Nombre del producto"
                 maxLength={20}
-                minLength={20}
+                minLength={5}
               />
               <small className="text-white/60 text-xs">
                 Este nombre será visible para los clientes
@@ -258,10 +258,19 @@ function EditProductAdmin() {
           <span className="flex flex-row gap-4">
             <button
               type="submit"
-              className="py-1 px-2 border rounded-md border-white/20 bg-zinc-800 cursor-pointer flex flex-row gap-1"
+              className="justify-center border rounded-md border-white/20 bg-zinc-800 cursor-pointer flex flex-row gap-1"
             >
-              <Save className="fill-white/80" />
-              <h1 className="text-sm text-white/80">Guardar Cambios</h1>
+              {!formData && (
+                <span className="flex flex-row gap-1 py-1 px-2">
+                  <Save className="fill-white/80" />
+                  <h1 className="text-sm text-white/80 ">Guardar Cambios</h1>
+                </span>
+              )}
+              {formData && (
+                <span className="flex justify-center p-3 w-36">
+                  <Loader />
+                </span>
+              )}
             </button>
           </span>
         </div>
@@ -273,23 +282,21 @@ function EditProductAdmin() {
             >
               Imagen del producto
             </label>
+
             <span className="flex flex-row gap-4">
               {uploading ? (
                 <span className="w-44 h-44 object-contain rounded-md bg-white">
-                  <Loader />
+                  {/* <Loader /> */}
                 </span>
               ) : (
                 <>
-                  {/* {product.image && (
+                  {product.image && (
                     <img
                       src={product.image}
                       alt={product.name}
                       className="w-44 h-44 object-contain rounded-md bg-white"
                     />
-                  )} */}
-                  <span className="w-44 h-44 object-contain rounded-md bg-white">
-                    <Loader />
-                  </span>
+                  )}
                 </>
               )}
               <div className="flex items-center justify-center border-[2px] border-dashed rounded-md w-52 h-44 border-zinc-800 bg-[#1c1c1c]">

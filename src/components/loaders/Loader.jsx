@@ -1,7 +1,8 @@
+/* eslint-disable react/self-closing-comp */
 import React from 'react';
 
 function Loader() {
-  return <span className="loader border-2 border-black">a</span>;
+  return <span className="loader"></span>;
 }
 
 export default Loader;

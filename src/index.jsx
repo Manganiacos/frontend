@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import Base from './layouts/Base';
 import reportWebVitals from './reportWebVitals';
 import './global.css';
+import '@tremor/react/dist/esm/tremor.css';
 
 import store from './store';
 
