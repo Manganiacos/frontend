@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
@@ -20,6 +21,7 @@ import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
 import Left from '../../assets/svg/left';
 import Shelves from '../../assets/svg/shelves';
 import SearchIcon from '../../assets/svg/search';
+import Loader from '../../components/loaders/Loader';
 
 function Inventory() {
   const dispatch = useDispatch();
@@ -84,10 +86,14 @@ function Inventory() {
   return (
     <>
       <section>
-        <span className="flex flex-row gap-1 items-center">
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="flex flex-row gap-1 items-center"
+        >
           <Left className="fill-white/80" />
           <h1 className="text-sm text-white/80">Inventario</h1>
-        </span>
+        </button>
         <div className="grid grid-cols-1 mt-8 gap-4">
           <div className="flex flex-row gap-8 items-center">
             <h1 className="text-[#D0F567] text-sm">
@@ -117,69 +123,79 @@ function Inventory() {
               <SearchIcon className="absolute top-1/2 left-3 transform -translate-y-1/2 fill-white/80" />
             </span>
           </div>
-          <div className="flex flex-col">
-            <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                <div className="overflow-hidden">
-                  <table className="min-w-full bg-[#1c1c1c] rounded-md shadow-sm overflow-hidden">
-                    <thead className="border-b border-zinc-800">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium text-white/80 px-6 py-4 text-left"
-                        >
-                          Nombre
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium text-white/80 px-6 py-4 text-left"
-                        >
-                          Precio
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium text-white/80 px-6 py-4 text-left"
-                        >
-                          Existencia
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium text-white/80 px-6 py-4 text-left"
-                        >
-                          Estado
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium text-white/80 px-6 py-4 text-left"
-                        >
-                          Categoría
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium text-white/80 px-6 py-4 text-left"
-                        >
-                          Editorial
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium text-white/80 px-6 py-4 text-left"
-                        />
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {products.map((product) => (
-                        <InventoryProduct
-                          key={product._id}
-                          product={product}
-                          deleteHandler={deleteHandler}
-                        />
-                      ))}
-                    </tbody>
-                  </table>
+          {loading ? (
+            <span className="flex justify-center items-center w-full h-[200px]">
+              <Loader color="#eee" size={80} />
+            </span>
+          ) : error ? (
+            <span className="flex justify-center w-full h-full items-center">
+              <h1 className="text-white/80 text-sm">{error}</h1>
+            </span>
+          ) : (
+            <div className="flex flex-col">
+              <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                  <div className="overflow-hidden">
+                    <table className="min-w-full bg-[#1c1c1c] rounded-md shadow-sm overflow-hidden">
+                      <thead className="border-b border-zinc-800">
+                        <tr>
+                          <th
+                            scope="col"
+                            className="text-sm font-medium text-white/80 px-6 py-4 text-left"
+                          >
+                            Nombre
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-sm font-medium text-white/80 px-6 py-4 text-left"
+                          >
+                            Precio
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-sm font-medium text-white/80 px-6 py-4 text-left"
+                          >
+                            Existencia
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-sm font-medium text-white/80 px-6 py-4 text-left"
+                          >
+                            Estado
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-sm font-medium text-white/80 px-6 py-4 text-left"
+                          >
+                            Categoría
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-sm font-medium text-white/80 px-6 py-4 text-left"
+                          >
+                            Editorial
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-sm font-medium text-white/80 px-6 py-4 text-left"
+                          />
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {products.map((product) => (
+                          <InventoryProduct
+                            key={product._id}
+                            product={product}
+                            deleteHandler={deleteHandler}
+                          />
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
       {open && <Delete open={open} setOpen={setOpen} />}

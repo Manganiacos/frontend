@@ -33,7 +33,7 @@ function InventoryProduct({ product, deleteHandler }) {
           <img
             src={product.image}
             alt={product.name}
-            className="w-8 h-8 rounded-md object-contain"
+            className="w-8 h-8 rounded-md object-contain object-center"
           />
           <p className="text-white/80 text-sm font-normal capitalize">
             {product.name.charAt(0).toUpperCase() +

@@ -1,10 +1,13 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { AnimatePresence, motion, useCycle } from 'framer-motion';
 
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { listProductDetails } from '../actions/productActions';
-import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
+
+import { addToFavorite } from '../actions/favoriteActions';
 
 import Rating from '../components/Rating';
 import SEO from '../components/SEO';
@@ -21,14 +24,15 @@ import Bill from '../assets/svg/bill';
 import ShippingCart from '../assets/svg/shippingCart';
 import Shield from '../assets/svg/shield';
 import Original from '../assets/svg/original';
+import Close from '../assets/svg/close';
 
 function ProductPage() {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const [show, setShow] = useCycle(false, true);
+
   const [qty, setQty] = useState(1);
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
 
   const incremenateQty = (e) => {
     if (qty < product.countInStock) {
@@ -52,28 +56,36 @@ function ProductPage() {
     currency: 'COP'
   }).format(product.price);
 
-  const productReviewCreate = useSelector((state) => state.productReviewCreate);
-  const {
-    loading: loadingProductReview,
-    error: errorProductReview,
-    success: successProductReview
-  } = productReviewCreate;
+  const open = () => {
+    setShow();
+  };
 
   const addToCartHandler = () => {
     navigate(`/cart/${params.id}?qty=${qty}`);
   };
 
+  if (show) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'unset';
+  }
+
   useEffect(() => {
-    if (successProductReview) {
-      setRating(0);
-      setComment('');
-      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
-    }
     dispatch(listProductDetails(params.id));
-  }, [dispatch, params, successProductReview]);
+  }, [dispatch, params]);
 
   // title set name and volume
   const title = `${product.name} VOL. ${product.volume}`;
+
+  const [hasClicked, setHasClicked] = useState(false);
+
+  const addToFavoriteHandler = () => {
+    dispatch(addToFavorite(product._id, qty));
+  };
+
+  const handleShow = () => {
+    addToFavoriteHandler();
+  };
 
   return (
     <>
@@ -132,12 +144,36 @@ function ProductPage() {
               <span className="flex flex-row gap-2">
                 <button
                   type="button"
+                  onClick={handleShow}
                   className="text-xs fill-white/30 py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
-                  onClick={(e) => {
-                    e.target.classList.toggle('fill-red-500');
-                  }}
                 >
-                  <Favorite />
+                  <motion.div
+                    whileTap={{ scale: 1.3 }}
+                    transition={{ duration: 0.5 }}
+                    onClick={() => setHasClicked(!hasClicked)}
+                    style={{
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height={20}
+                      width={20}
+                    >
+                      {!hasClicked && (
+                        <path
+                          className="fill-white/80"
+                          d="M10 17l-1.042-.938q-2.083-1.854-3.437-3.177-1.354-1.323-2.136-2.354Q2.604 9.5 2.302 8.646 2 7.792 2 6.896q0-1.854 1.271-3.125T6.396 2.5q1.021 0 1.979.438.958.437 1.625 1.229.667-.792 1.625-1.229.958-.438 1.979-.438 1.854 0 3.125 1.271T18 6.896q0 .896-.292 1.729-.291.833-1.073 1.854-.781 1.021-2.145 2.365-1.365 1.344-3.49 3.26zm0-2.021q1.938-1.729 3.188-2.948 1.25-1.219 1.989-2.125.74-.906 1.031-1.614.292-.709.292-1.396 0-1.229-.833-2.063Q14.833 4 13.604 4q-.729 0-1.364.302-.636.302-1.094.844L10.417 6h-.834l-.729-.854q-.458-.542-1.114-.844Q7.083 4 6.396 4q-1.229 0-2.063.833-.833.834-.833 2.063 0 .687.271 1.364.271.678.989 1.573.719.896 1.98 2.125Q8 13.188 10 14.979zm0-5.5z"
+                        />
+                      )}
+                      {hasClicked && (
+                        <path
+                          className="fill-red-500 fill-opacity-80"
+                          d="M10 17l-1.042-.938q-2.083-1.854-3.437-3.177-1.354-1.323-2.136-2.354Q2.604 9.5 2.302 8.646 2 7.792 2 6.896q0-1.854 1.271-3.125T6.396 2.5q1.021 0 1.979.438.958.437 1.625 1.229.667-.792 1.625-1.229.958-.438 1.979-.438 1.854 0 3.125 1.271T18 6.896q0 .896-.292 1.729-.291.833-1.073 1.854-.781 1.021-2.145 2.365-1.365 1.344-3.49 3.26zm0-2.021q1.938-1.729 3.188-2.948 1.25-1.219 1.989-2.125.74-.906 1.031-1.614.292-.709.292-1.396 0-1.229-.833-2.063Q14.833 4 13.604 4q-.729 0-1.364.302-.636.302-1.094.844L10.417 6h-.834l-.729-.854q-.458-.542-1.114-.844Q7.083 4 6.396 4q-1.229 0-2.063.833-.833.834-.833 2.063 0 .687.271 1.364.271.678.989 1.573.719.896 1.98 2.125Q8 13.188 10 14.979zm0-5.5z"
+                        />
+                      )}
+                    </svg>
+                  </motion.div>
                 </button>
                 <span className="flex flex-row">
                   <button
@@ -180,10 +216,13 @@ function ProductPage() {
 
             <hr className="border-zinc-800/80" />
             <div className="flex flex-col gap-2">
-              <h1 className="text-white/80 font-bold text-sm flex flex-row gap-1">
-                Comentarios
+              <h1 className="text-white/80 font-bold text-md flex flex-row gap-1">
+                Opiniones del producto
               </h1>
-              <Comment />
+              {/* <span className="grid gap-2">
+                
+              </span> */}
+              <Comment product={product} params={params} />
             </div>
           </div>
           <div className="col-span-1 flex flex-col items-center gap-4 relative">
@@ -201,11 +240,13 @@ function ProductPage() {
                 </span>
               </h1>
             </span> */}
-            <img
-              src={product.image}
-              alt={product.name}
-              className="relative rounded-md w-[350px] h-[500px] object-cover shadow-md"
-            />
+            <button type="button" onClick={open}>
+              <img
+                src={product.image}
+                alt={product.name}
+                className="relative rounded-md w-[350px] h-[500px] object-cover shadow-md cursor-zoom-in"
+              />
+            </button>
             <span className="flex justify-between flex-row gap-4 border border-white/20 bg-zinc-800 p-4 rounded-lg">
               <div className="flex flex-col gap-2 items-center">
                 <ShippingCart className="fill-white" />
@@ -227,9 +268,45 @@ function ProductPage() {
               </div>
             </span>
           </div>
-          <div className="col-span-1 border">a</div>
+          {/* <h1 className="col-span-1 font-bold text-white/80 border">
+            Productos relacionados
+          </h1> */}
         </div>
       </section>
+      <AnimatePresence exitBeforeEnter>
+        {show && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/50"
+            style={{
+              backdropFilter: 'blur(5px)'
+            }}
+          >
+            <div className="fixed top-2 left-1/2 transform -translate-x-1/2 flex flex-col gap-3 rounded-md p-8">
+              <span className="flex justify-between items-center">
+                <h1 className="text-white/80 w-full text-sm">
+                  Vista previa de la imagen
+                </h1>
+                <button
+                  type="button"
+                  onClick={setShow}
+                  className="flex justify-end w-full"
+                >
+                  <Close className="fill-white/50 hover:fill-white" />
+                </button>
+              </span>
+              <img
+                src={product.image}
+                alt={product.name}
+                className="relative rounded-md object-cover"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

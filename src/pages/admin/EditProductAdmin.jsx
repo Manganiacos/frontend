@@ -154,10 +154,14 @@ function EditProductAdmin() {
   }, [dispatch, navigate, product, params, successUpdate]);
   return (
     <section className="flex flex-col gap-8">
-      <span className="flex flex-row gap-1 items-center">
+      <button
+        type="button"
+        onClick={() => navigate(-1)}
+        className="flex flex-row gap-1 items-center"
+      >
         <Left className="fill-white/80" />
         <h1 className="text-sm text-white/80">Editar producto</h1>
-      </span>
+      </button>
       <div className="grid grid-cols-2 gap-8 items-start">
         <span className="flex flex-col gap-1">
           <h1 className="text-2xl text-white/80">Editar producto</h1>
@@ -267,8 +271,8 @@ function EditProductAdmin() {
                 </span>
               )}
               {formData && (
-                <span className="flex justify-center p-3 w-36">
-                  <Loader />
+                <span className="flex justify-center py-1 px-2 w-36">
+                  <Loader color="#eee" size={20} />
                 </span>
               )}
             </button>
@@ -285,8 +289,8 @@ function EditProductAdmin() {
 
             <span className="flex flex-row gap-4">
               {uploading ? (
-                <span className="w-44 h-44 object-contain rounded-md bg-white">
-                  {/* <Loader /> */}
+                <span className="w-44 h-44 object-contain rounded-md bg-white flex justify-center items-center">
+                  <Loader color="#333" size={40} />
                 </span>
               ) : (
                 <>

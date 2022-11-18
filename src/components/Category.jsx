@@ -13,7 +13,7 @@ import ShowCategory from './ShowCategory';
 function Category() {
   const [isShown, setIsShown] = useState('');
   const categories = categoryList;
-  console.log(isShown);
+  // console.log(isShown);
   return (
     <Menu as="div" className="col-span-3 xl:col-span-1 flex">
       {({ open }) => (
@@ -41,6 +41,7 @@ function Category() {
             >
               {categoryList.map((category) => (
                 <Menu.Button
+                  key={category._id}
                   type="button"
                   value={category.name}
                   onMouseEnter={(e) => setIsShown(e.target.value)}

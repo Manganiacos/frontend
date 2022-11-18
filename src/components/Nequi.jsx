@@ -16,6 +16,7 @@ import { payOrder } from '../actions/orderActions';
 import File from '../assets/svg/file';
 import Load from '../assets/svg/load';
 import Close from '../assets/svg/close';
+import Loader from './loaders/Loader';
 
 function Nequi({ order }) {
   const [load, setLoad] = useState(false);
@@ -89,7 +90,7 @@ function Nequi({ order }) {
               onClick={clearImage}
               className="absolute top-0 right-0"
             >
-              <Close className="fill-black/80 hover:fill-red-500/80" />
+              <Close className="fill-white/80 hover:fill-red-500/80" />
             </button>
             <img src={img} alt="file" className="w-36 h-36 object-cover" />
           </span>
@@ -123,7 +124,7 @@ function Nequi({ order }) {
           )}
           {load && (
             <span className="flex justify-center ">
-              <Load className="fill-white/80 animate-spin" />
+              <Loader color="#eee" size={20} />
             </span>
           )}
         </button>

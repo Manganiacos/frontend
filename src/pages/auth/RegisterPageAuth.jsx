@@ -12,9 +12,10 @@ import User from '../../assets/svg/user';
 import Email from '../../assets/svg/email';
 import Password from '../../assets/svg/password';
 
-import Load from '../../assets/svg/load';
+// import Load from '../../assets/svg/load';
 
 import { register } from '../../actions/userActions';
+import Loader from '../../components/loaders/Loader';
 
 function RegisterPageAuth() {
   const dispatch = useDispatch();
@@ -203,7 +204,7 @@ function RegisterPageAuth() {
                       )}
                       {formData && (
                         <span className="flex justify-center ">
-                          <Load className="fill-white/80 animate-spin" />
+                          <Loader color="#eee" size={20} />
                         </span>
                       )}
                     </button>
@@ -216,7 +217,7 @@ function RegisterPageAuth() {
 
           <span className="pt-8">
             <p className="text-white/80 text-sm font-normal text-center tracking-wide">
-              ¿Ya tienes una cuenta?{' / '}
+              ¿Ya tienes una cuenta?{' | '}
               <Link
                 to="/auth/login"
                 className="font-bold text-white/80 text-sm"

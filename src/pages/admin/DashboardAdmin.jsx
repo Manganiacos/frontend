@@ -8,6 +8,7 @@ import StickArrow from '../../assets/svg/StickArrow';
 
 import Donut from '../../components/charts/Donut';
 import Area from '../../components/charts/Area';
+import Bar from '../../components/charts/Bar';
 
 function Dashboard() {
   const data = [
@@ -170,6 +171,7 @@ function Dashboard() {
           <h1 className="text-white/80 text-md font-bold">
             Top 5 productos más vendidos
           </h1>
+          <Bar data={data} />
         </div>
       </div>
     </section>

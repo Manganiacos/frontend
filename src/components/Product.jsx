@@ -48,6 +48,7 @@ function Product(props) {
   const addToCartHandler = () => {
     dispatch(addToCart(props.product._id, qty));
   };
+
   const handleShow = () => {
     addToCartHandler();
     setShow(true);

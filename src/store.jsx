@@ -12,6 +12,7 @@ import {
 } from './reducers/productReducers';
 
 import { cartReducer } from './reducers/cartReducers';
+import { favoriteReducer } from './reducers/favoriteReducers';
 
 import {
   userLoginReducer,
@@ -42,6 +43,7 @@ const reducer = combineReducers({
   productTopRated: productTopRatedReducer,
 
   cart: cartReducer,
+  favorite: favoriteReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
@@ -62,6 +64,10 @@ const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : [];
 
+const favoriteItemsFromStorage = localStorage.getItem('favoriteItems')
+  ? JSON.parse(localStorage.getItem('favoriteItems'))
+  : [];
+
 const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null;
@@ -74,6 +80,9 @@ const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage
+  },
+  favorite: {
+    favoriteItems: favoriteItemsFromStorage
   },
   userLogin: { userInfo: userInfoFromStorage }
 };

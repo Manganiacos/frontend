@@ -135,7 +135,7 @@ function StorePage() {
   return (
     <>
       <SEO title="Tienda Comics y Mangas" description="Manganiacos" />
-      <section className="container mx-auto grid grid-cols-4 gap-6 pt-12 pb-56 h-screen">
+      <section className="container mx-auto grid grid-cols-4 gap-6 pt-12 pb-56 h-full">
         <FilterPanel
           clearFilters={handleClearFilters}
           selectedEditorial={selectedEditorial}

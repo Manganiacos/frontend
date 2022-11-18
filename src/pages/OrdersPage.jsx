@@ -13,6 +13,7 @@ import { listMyOrders } from '../actions/orderActions';
 import Search from '../assets/svg/search';
 import Orders from '../components/Orders';
 import SEO from '../components/SEO';
+import Loader from '../components/loaders/Loader';
 
 function OrdersPage() {
   const [name, setName] = useState('');
@@ -82,9 +83,9 @@ function OrdersPage() {
             </span>
           </div>
           {loadingOrders ? (
-            <h1>
-              <span className="text-white/80 text-sm">Cargando...</span>
-            </h1>
+            <div className="col-span-4 flex justify-center items-center h-[300px] w-full">
+              <Loader color="#eee" size={80} />
+            </div>
           ) : errorOrders ? (
             <h1>
               <span className="text-white/80 text-sm">{errorOrders}</span>

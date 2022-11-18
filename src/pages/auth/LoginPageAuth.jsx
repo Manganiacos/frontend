@@ -12,7 +12,8 @@ import { login } from '../../actions/userActions';
 
 import Email from '../../assets/svg/email';
 import Password from '../../assets/svg/password';
-import Load from '../../assets/svg/load';
+import Loader from '../../components/loaders/Loader';
+// import Load from '../../assets/svg/load';
 
 function LoginPageAuth() {
   const [formData, setFormData] = useState(false);
@@ -143,7 +144,7 @@ function LoginPageAuth() {
                       )}
                       {formData && (
                         <span className="flex justify-center ">
-                          <Load className="fill-white/80 animate-spin" />
+                          <Loader color="#eee" size={20} />
                         </span>
                       )}
                     </button>
@@ -156,7 +157,7 @@ function LoginPageAuth() {
           {/* end form */}
           <span className="pt-8">
             <p className="text-white/80 text-sm font-normal text-center tracking-wide">
-              ¿No tienes cuenta?{' '}
+              ¿No tienes cuenta?{' | '}
               <Link
                 to="/auth/register"
                 className="font-bold text-white/80 text-sm"
