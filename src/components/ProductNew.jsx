@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Cart from '../assets/svg/cart';
 
-function ProductNew({ product }) {
+function ProductNew({ product, handleProduct }) {
   const [name, setName] = useState(product.name.toLowerCase());
   const price = new Intl.NumberFormat('es-CO', {
     style: 'currency',
@@ -47,7 +47,7 @@ function ProductNew({ product }) {
           </h1>
         </div>
         <div className="col-span-1 flex items-center justify-end">
-          <button type="button">
+          <button type="button" onClick={() => handleProduct(product)}>
             <span>
               <Cart className="fill-zinc-400 hover:fill-zinc-100" />
             </span>

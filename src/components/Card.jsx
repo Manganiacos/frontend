@@ -93,22 +93,33 @@ function Card({ product }) {
       <AnimatePresence exitBeforeEnter>
         {openProduct && (
           <motion.div
-            initial={{
-              x: '100vh',
-              opacity: 0
-            }}
-            animate={{ x: '0vh', opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            exit={{ x: '100vh', opacity: 0, backgroundColor: 'transparent' }}
-            className="fixed top-0 left-0 w-screen h-screen z-[70] bg-black/50"
+            className="bg-black/50 fixed top-0 left-0 w-screen h-screen z-[70]"
           >
-            <>
-              <Product
-                onClick={cycleOpenProduct}
-                product={product}
-                key={product}
-              />
-            </>
+            <motion.span
+              initial={{
+                x: '100vh',
+                opacity: 0
+              }}
+              animate={{
+                x: '0vh',
+                opacity: 1
+              }}
+              transition={{ duration: 0.5 }}
+              exit={{ x: '100vh', opacity: 0, backgroundColor: 'transparent' }}
+              className="fixed top-0 left-0 w-screen h-screen z-[70]"
+            >
+              <>
+                <Product
+                  onClick={cycleOpenProduct}
+                  product={product}
+                  key={product}
+                />
+              </>
+            </motion.span>
           </motion.div>
         )}
       </AnimatePresence>

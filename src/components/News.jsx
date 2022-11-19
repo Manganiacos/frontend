@@ -14,6 +14,7 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from 'react';
+import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
@@ -22,12 +23,28 @@ import { listProducts } from '../actions/productActions';
 import Arrow from '../assets/svg/arrow';
 import Left from '../assets/svg/left';
 import RightA from '../assets/svg/rightA';
-
+import Product from './Product';
 import ProductNew from './ProductNew';
 
 function News() {
   const dispatch = useDispatch();
   const location = useLocation();
+
+  const [productArray, setProductArray] = useState([]);
+  const [openProduct, cycleOpenProduct] = useCycle(false, true);
+
+  const handleProduct = (product) => {
+    setProductArray(product);
+    cycleOpenProduct();
+  };
+
+  console.log(productArray);
+
+  if (openProduct) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'unset';
+  }
 
   const keyword = location.search;
 
@@ -172,7 +189,10 @@ function News() {
                   <SplideTrack>
                     {filter.map((product) => (
                       <SplideSlide key={product._id}>
-                        <ProductNew product={product} />
+                        <ProductNew
+                          product={product}
+                          handleProduct={handleProduct}
+                        />
                       </SplideSlide>
                     ))}
                   </SplideTrack>
@@ -200,6 +220,43 @@ function News() {
           ) : (
             <></>
           )}
+          <AnimatePresence exitBeforeEnter>
+            {openProduct && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-black/50 fixed top-0 left-0 w-screen h-screen z-[70]"
+              >
+                <motion.span
+                  initial={{
+                    x: '100vh',
+                    opacity: 0
+                  }}
+                  animate={{
+                    x: '0vh',
+                    opacity: 1
+                  }}
+                  transition={{ duration: 0.5 }}
+                  exit={{
+                    x: '100vh',
+                    opacity: 0,
+                    backgroundColor: 'transparent'
+                  }}
+                  className="fixed top-0 left-0 w-screen h-screen z-[70]"
+                >
+                  <>
+                    <Product
+                      onClick={cycleOpenProduct}
+                      product={productArray}
+                      key={productArray}
+                    />
+                  </>
+                </motion.span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </>
       )}
     </>
