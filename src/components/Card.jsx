@@ -36,10 +36,17 @@ function Card({ product }) {
     <>
       <section className="relative rounded-md bg-black/30 shadow-lg p-2 shadow-black/30 overflow-hidden">
         <div className="flex justify-center items-center relative py-4 px-12">
+          <Link to={`/product/${product._id}`}>
+            <img
+              src={product.image}
+              alt={product.name}
+              className=" w-full h-56 object-cover relative shadow-lg rounded-lg"
+            />
+          </Link>
           {product.countInStock > 5 ? (
             ''
           ) : (
-            <span className="z-40 absolute px-3 py-1 border rounded-md border-white/20 bg-zinc-800 top-4 right-4">
+            <span className="absolute px-3 py-1 border rounded-md border-white/20 bg-zinc-800 top-4 right-4">
               <h1 className="text-white/80 font-normal text-xs">
                 {product.countInStock >= 2 &&
                   product.countInStock <= 5 &&
@@ -52,14 +59,6 @@ function Card({ product }) {
               </h1>
             </span>
           )}
-
-          <Link to={`/product/${product._id}`}>
-            <img
-              src={product.image}
-              alt={product.name}
-              className=" w-full h-56 object-cover relative shadow-lg rounded-lg"
-            />
-          </Link>
         </div>
         <div className="px-12 flex flex-col">
           <h1 className="text-zinc-400 text-xs font-bold capitalize">

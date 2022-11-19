@@ -377,10 +377,17 @@ input[type='radio'] {
   }
 }
 
-
-.on {
-  color: #000;
+.TabsTrigger {
+  font-family: inherit;
 }
-.off {
-  color: #ccc;
+
+.TabsTrigger:hover {
+  color: #15803d;
+}
+.TabsTrigger[data-state='active'] {
+  color: #15803d;
+}
+.TabsTrigger:focus {
+  position: relative;
+  box-shadow: 0 0 0 2px black;
 }

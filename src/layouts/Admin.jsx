@@ -65,6 +65,14 @@ function Admin() {
     setShow();
   };
 
+  useEffect(() => {
+    if (userInfo && userInfo.isAdmin) {
+      console.log('Admin');
+    } else {
+      navigate('/');
+    }
+  }, [dispatch, navigate, userInfo]);
+
   return (
     <>
       <section className="grid grid-cols-8 gap-4 container mx-auto mt-12 pb-96">
@@ -145,7 +153,7 @@ function Admin() {
                   <h1 className=" text-white/70 text-sm font-normal">Perfil</h1>
                 </span>
                 <h1 className=" text-white/70 text-[10px] font-normal border-[1px] border-white/50 rounded-full px-2">
-                  @user
+                  @{user && user.name}
                 </h1>
               </Link>
               <button

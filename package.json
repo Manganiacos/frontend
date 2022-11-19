@@ -12,6 +12,7 @@
     "@radix-ui/react-navigation-menu": "^1.1.1",
     "@radix-ui/react-popover": "^1.0.2",
     "@radix-ui/react-select": "^1.1.1",
+    "@radix-ui/react-tabs": "^1.0.1",
     "@radix-ui/react-toast": "^1.1.1",
     "@splidejs/react-splide": "^0.7.8",
     "@splidejs/splide": "^4.0.7",

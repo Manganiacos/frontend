@@ -8,43 +8,39 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 
 function Slider() {
-  const img =
-    'https://www.thrustmaster.com/wp-content/uploads/2022/08/Promo-BackToSchool_1920x1080.jpg';
+  const img1 = 'https://i.ibb.co/Y3CQ4WT/BANNER-PANINI-2022-02.jpg';
+  const img2 = 'https://i.ibb.co/hdFkLwY/BANNER-PANINI-2022-01.jpg';
 
   return (
-    <Splide
-      options={{
-        type: 'loop',
-        perPage: 1,
-        rewind: true,
-        speed: 1000,
-        autoplay: true,
-        arrows: false,
-        pagination: true,
-        gap: '8px'
-      }}
-    >
-      <SplideSlide>
-        <img
-          src={img}
-          className="sm:h-96 h-36 w-full object-cover rounded-lg"
-          alt="Image 1"
-        />
-      </SplideSlide>
-      <SplideSlide>
-        <img
-          src={img}
-          className="sm:h-96 h-36 w-full object-cover rounded-lg"
-          alt="Image 3"
-        />
-      </SplideSlide>
-      {/* <SplideSlide>
-        <img src={img2} alt="Image 2" />
-      </SplideSlide>
-      <SplideSlide>
-        <img src={img} alt="Image 3" />
-      </SplideSlide> */}
-    </Splide>
+    <span className="cursor-move">
+      <Splide
+        options={{
+          type: 'loop',
+          perPage: 1,
+          rewind: true,
+          speed: 1000,
+          autoplay: true,
+          arrows: false,
+          pagination: false,
+          gap: '8px'
+        }}
+      >
+        <SplideSlide>
+          <img
+            src={img1}
+            className="h-[800px] w-full object-cover rounded-lg"
+            alt="Image 1"
+          />
+        </SplideSlide>
+        <SplideSlide>
+          <img
+            src={img2}
+            className="h-[800px] w-full object-cover rounded-lg"
+            alt="Image 3"
+          />
+        </SplideSlide>
+      </Splide>
+    </span>
   );
 }
 

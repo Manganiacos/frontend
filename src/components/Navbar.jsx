@@ -8,13 +8,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from 'react';
-
+import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { logout } from '../actions/userActions';
 
 import Category from './Category';
+import MenuC from '../assets/svg/menu';
 
 import Location from '../assets/svg/location';
 import More from '../assets/svg/more';
@@ -42,11 +43,6 @@ function Navbar() {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
-  // const locate =
-  //   location.pathname.split('/')[1].charAt(0).toUpperCase() +
-  //   location.pathname.split('/')[1].slice(1);
-  // console.log(locate);
 
   const path = [
     {
@@ -149,6 +145,7 @@ function Navbar() {
         <hr className="border-zinc-800" />
         <div className="grid grid-cols-3 py-3 items-center container mx-auto px-8 xl:px-0">
           <Category />
+
           <span className="col-span-3 xl:col-span-1 flex flex-row gap-8 justify-center">
             <Link to="/store" className="text-sm text-white">
               Los más vendidos
