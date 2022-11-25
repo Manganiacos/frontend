@@ -74,7 +74,7 @@ function Logout() {
               static
               className=" visible transition duration-300 opacity-100 border rounded-md border-white/20 bg-zinc-800 mt-12 pb-1 w-48 absolute right-0"
             >
-              <span className="cursor-pointer rounded-t text-sm flex flex-col gap-2 font-normal leading-3 tracking-normal pt-4 pb-3 mb-1 bg-black/50 text-white px-3">
+              <span className="rounded-t text-sm flex flex-col gap-2 font-normal leading-3 tracking-normal pt-4 pb-3 mb-1 bg-black/50 text-white px-3">
                 <h1>{name}</h1>
                 <h1>{email}</h1>
               </span>

@@ -5,7 +5,7 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import * as Accordion from '@radix-ui/react-accordion';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
-import { editorialList } from '../constants/testConstant';
+import { editorialList } from '../constants/constant';
 import Slider from './filters/Slider';
 import Toogle from './filters/Toogle';
 import Checkbox from './filters/Checkbox';

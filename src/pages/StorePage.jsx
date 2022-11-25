@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-nested-ternary */
@@ -6,12 +7,16 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+
+import axios from 'axios';
+
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { listProducts } from '../actions/productActions';
 import Card from '../components/Card';
 import FilterPanel from '../components/FilterPanel';
 import SearchBar from '../components/filters/SearchBar';
-// import { dataList } from '../constants/testConstant';
+// import { dataList } from '../constants/constant';
 
 // import Clean from '../assets/svg/clean';
 // import Settings from '../assets/svg/settings';
@@ -27,29 +32,26 @@ import Filter from '../assets/svg/filter';
 function StorePage() {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-  const { error, loading, products } = productList;
+  const { error, loading, products, page, pages } = productList;
 
-  const itemsPerPage = 12;
+  const [pageCount, setPageCount] = useState(1);
 
-  // const [currentItems, setCurrentItems] = useState([]);
-  const [itemOffset, setItemOffset] = useState(0);
+  const location = useLocation();
+  const keyword = location.search;
 
-  const endOffset = itemOffset + itemsPerPage;
-  const currentItems = products.slice(itemOffset, endOffset);
-
-  const pageCount = Math.ceil(products.length / itemsPerPage);
-
-  const [list, setList] = useState(currentItems);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % products.length;
-    setItemOffset(newOffset);
-    setList(currentItems);
-  };
-
-  // console.log(list);
+  const [list, setList] = useState([]);
+  // console.log('list', list);
 
   const [selectedEditorial, setSelectedEditorial] = useState(null);
+
+  const paginationHandler = async (x) => {
+    const res = await axios.get(
+      `/api/products/?keyword=${keyword}&page=${x + 1}`
+    );
+
+    setList(res.data.products);
+    setPageCount(res.data.page);
+  };
 
   const handleValue = (e) => {
     e.preventDefault();
@@ -70,8 +72,6 @@ function StorePage() {
   const handleSelectEditorial = (event, value) =>
     !value ? null : setSelectedEditorial(value);
 
-  // console.log(selectedEditorial);
-
   const handleChangeChecked = (id) => {
     const categoriesStateList = categories;
     const changeCheckedCategories = categoriesStateList.map((item) =>
@@ -81,7 +81,7 @@ function StorePage() {
   };
 
   const handleClearFilters = () => {
-    setList(currentItems);
+    setList(products);
     setCategories([
       { id: 1, checked: false, label: 'josei' },
       { id: 2, checked: false, label: 'seinen' },
@@ -93,7 +93,7 @@ function StorePage() {
   };
 
   const applyFilters = () => {
-    let updatedList = currentItems;
+    let updatedList = products;
 
     // Editorial Filter
     if (selectedEditorial) {
@@ -123,14 +123,13 @@ function StorePage() {
     }
 
     setList(updatedList);
-
     !updatedList.length ? setResultsFound(false) : setResultsFound(true);
   };
 
   useEffect(() => {
-    dispatch(listProducts());
+    dispatch(listProducts(keyword));
     applyFilters();
-  }, [dispatch, selectedEditorial, categories, searchInput]);
+  }, [dispatch, selectedEditorial, categories, searchInput, keyword]);
 
   return (
     <>
@@ -162,21 +161,14 @@ function StorePage() {
           <div>
             {resultsFound ? (
               <>
-                {/* {loading ? (
-                  <CardLoader />
-                ) : error ? (
-                  <h1>{error}</h1>
-                ) : (
-                  
-                )} */}
                 <div className="flex flex-col gap-8 items-center">
                   <ListProduct list={list} />
-                  {pageCount > 1 && (
-                    <Paginate
-                      handlePageClick={handlePageClick}
-                      pageCount={pageCount}
-                    />
-                  )}
+                  <Paginate
+                    pageCount={pageCount}
+                    pages={pages}
+                    keyword={keyword}
+                    paginationHandler={paginationHandler}
+                  />
                 </div>
               </>
             ) : (

@@ -47,7 +47,7 @@ function InventoryProduct({ product, deleteHandler }) {
         <td className="text-white/80 text-sm font-normal px-6 py-4 text-left">
           {product.countInStock} Unidades
         </td>
-        <td className="text-xs font-bold px-6 py-4 text-left">
+        <td className="text-[11px] font-normal px-6 py-4 text-left">
           {product.countInStock > 0 ? (
             <span className="text-white/80 border-[1px] border-white/50 bg-emerald-700 px-2 rounded-full">
               Disponible

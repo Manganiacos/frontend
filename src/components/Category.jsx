@@ -13,7 +13,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import * as Tabs from '@radix-ui/react-tabs';
 import MenuC from '../assets/svg/menu';
-import { categoryList } from '../constants/testConstant';
+import { categoryList } from '../constants/constant';
 import Default from './categories/Default';
 import Shonen from './categories/Shonen';
 import Seinen from './categories/Seinen';
