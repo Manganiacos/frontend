@@ -18,7 +18,7 @@ import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import { listProducts } from '../actions/productActions';
+import { listProductsAll } from '../actions/productActions';
 
 import Arrow from '../assets/svg/arrow';
 import Left from '../assets/svg/left';
@@ -48,8 +48,8 @@ function News() {
 
   const keyword = location.search;
 
-  const productList = useSelector((state) => state.productList);
-  const { error, loading, products } = productList;
+  const productAll = useSelector((state) => state.productAll);
+  const { error, loading, products } = productAll;
 
   const productsWithDate = products
     .map((product) => {
@@ -136,7 +136,7 @@ function News() {
   };
 
   useEffect(() => {
-    dispatch(listProducts(keyword));
+    dispatch(listProductsAll(keyword));
     setDate();
   }, [dispatch, keyword]);
 

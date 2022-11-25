@@ -7,6 +7,9 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
+  PRODUCT_ALL_REQUEST,
+  PRODUCT_ALL_SUCCESS,
+  PRODUCT_ALL_FAIL,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
@@ -49,6 +52,27 @@ export const listProducts =
       });
     }
   };
+
+export const listProductsAll = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_ALL_REQUEST });
+
+    const { data } = await axios.get(`/api/products/all`);
+
+    dispatch({
+      type: PRODUCT_ALL_SUCCESS,
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_ALL_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message
+    });
+  }
+};
 
 export const listTopProducts = () => async (dispatch) => {
   try {

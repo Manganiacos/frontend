@@ -8,18 +8,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createAutoComplete } from '@algolia/autocomplete-core';
 import { Menu, Transition } from '@headlessui/react';
-import { listProducts } from '../actions/productActions';
+import { listProductsAll } from '../actions/productActions';
 import SearchIcon from '../assets/svg/search';
 import Results from './Results';
 import CloseIcon from '../assets/svg/close';
 
 function Search() {
   const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList);
-  const { error, loading, products } = productList;
+  const productAll = useSelector((state) => state.productAll);
+  const { error, loading, products } = productAll;
 
   useEffect(() => {
-    dispatch(listProducts());
+    dispatch(listProductsAll());
   }, [dispatch]);
 
   const [query, setQuery] = useState('');

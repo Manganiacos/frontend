@@ -9,6 +9,9 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
+  PRODUCT_ALL_REQUEST,
+  PRODUCT_ALL_SUCCESS,
+  PRODUCT_ALL_FAIL,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
@@ -46,6 +49,27 @@ export const productListReducer = (state = { products: [] }, action) => {
       };
 
     case PRODUCT_LIST_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const productAllReducer = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case PRODUCT_ALL_REQUEST:
+      return { loading: true, products: [] };
+
+    case PRODUCT_ALL_SUCCESS:
+      return {
+        loading: false,
+        products: action.payload.products,
+        page: action.payload.page,
+        pages: action.payload.pages
+      };
+
+    case PRODUCT_ALL_FAIL:
       return { loading: false, error: action.payload };
 
     default:

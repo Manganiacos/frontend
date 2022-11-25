@@ -8,7 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { listProducts } from '../../actions/productActions';
+import { listProductsAll } from '../../actions/productActions';
 import Loader from '../loaders/Loader';
 
 import Kamite from '../../assets/svg/logos/kamite';
@@ -18,8 +18,8 @@ function KamiteSection() {
   const location = useLocation();
 
   const keyword = location.search;
-  const productList = useSelector((state) => state.productList);
-  const { error, loading, products } = productList;
+  const productAll = useSelector((state) => state.productAll);
+  const { error, loading, products } = productAll;
 
   const productsFilter = products
     .filter((product) => product.editorial === 'kamite')
@@ -31,7 +31,7 @@ function KamiteSection() {
     .reverse();
 
   useEffect(() => {
-    dispatch(listProducts(keyword));
+    dispatch(listProductsAll(keyword));
   }, [dispatch, keyword]);
 
   return (

@@ -7,31 +7,25 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from 'react';
-import { AnimatePresence, motion, useCycle } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 import Cart from '../assets/svg/cart';
 import Product from './Product';
 
-function Card({ product }) {
+function Card({ product, setListProduct, cycleOpenProduct }) {
   const [name, setName] = useState(product.name.toLowerCase());
-  const [openProduct, cycleOpenProduct] = useCycle(false, true);
 
   // console.log(openProduct);
-  if (openProduct) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = 'unset';
-  }
 
   const price = new Intl.NumberFormat('es-CO', {
     style: 'currency',
     currency: 'COP'
   }).format(product.price);
 
-  const openProductHandler = () => {
-    cycleOpenProduct();
-  };
+  // const openProductHandler = () => {
+  //   cycleOpenProduct();
+  // };
   return (
     <>
       <section className="relative rounded-md bg-black/30 shadow-lg p-2 shadow-black/30 overflow-hidden">
@@ -81,7 +75,13 @@ function Card({ product }) {
             </h1>
           </div>
           <div className="col-span-1 flex items-center justify-end">
-            <button type="button" onClick={cycleOpenProduct}>
+            <button
+              type="button"
+              onClick={() => {
+                cycleOpenProduct();
+                setListProduct(product);
+              }}
+            >
               <span>
                 <Cart className="fill-zinc-400 hover:fill-zinc-100" />
               </span>
@@ -89,40 +89,6 @@ function Card({ product }) {
           </div>
         </div>
       </section>
-
-      <AnimatePresence exitBeforeEnter>
-        {openProduct && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-black/50 fixed top-0 left-0 w-screen h-screen z-[70]"
-          >
-            <motion.span
-              initial={{
-                x: '100vh',
-                opacity: 0
-              }}
-              animate={{
-                x: '0vh',
-                opacity: 1
-              }}
-              transition={{ duration: 0.5 }}
-              exit={{ x: '100vh', opacity: 0, backgroundColor: 'transparent' }}
-              className="fixed top-0 left-0 w-screen h-screen z-[70]"
-            >
-              <>
-                <Product
-                  onClick={cycleOpenProduct}
-                  product={product}
-                  key={product}
-                />
-              </>
-            </motion.span>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }

@@ -9,7 +9,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Panini from '../../assets/svg/logos/panini';
-import { listProducts } from '../../actions/productActions';
+import { listProductsAll } from '../../actions/productActions';
 import Loader from '../loaders/Loader';
 
 function PaniniSection() {
@@ -17,8 +17,8 @@ function PaniniSection() {
   const location = useLocation();
 
   const keyword = location.search;
-  const productList = useSelector((state) => state.productList);
-  const { error, loading, products } = productList;
+  const productAll = useSelector((state) => state.productAll);
+  const { error, loading, products } = productAll;
 
   const productsFilter = products
     .filter((product) => product.editorial === 'panini')
@@ -30,7 +30,7 @@ function PaniniSection() {
     .reverse();
 
   useEffect(() => {
-    dispatch(listProducts(keyword));
+    dispatch(listProductsAll(keyword));
   }, [dispatch, keyword]);
   return (
     <>
