@@ -85,13 +85,24 @@ function Product(props) {
           </div>
         </div>
         <hr className="border-zinc-800" />
-        <AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
           {show && (
             <motion.div
-              initial={{ y: '-5vh', opacity: 1 }}
-              animate={{ y: '0vh' }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              initial={{
+                height: 0,
+                opacity: 1,
+                overflow: 'hidden',
+                transition: { duration: 0.5, ease: 'easeInOut' }
+              }}
+              animate={{
+                height: 'auto'
+              }}
+              exit={{
+                opacity: 0,
+                height: 0,
+                transition: { duration: 0.5, ease: 'easeInOut', delay: 0.3 }
+              }}
+              // className="fixed top-[178px] bg-black/80 w-full shadow-lg"
               className="top-0 left-0 right-0 bottom-0"
             >
               <>

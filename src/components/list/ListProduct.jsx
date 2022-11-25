@@ -17,6 +17,7 @@ function ListProduct({ list }) {
   } else {
     document.body.style.overflow = 'unset';
   }
+
   return (
     <>
       <AnimatePresence exitBeforeEnter>
@@ -48,6 +49,9 @@ function ListProduct({ list }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             className="bg-black/50 fixed top-0 left-0 w-screen h-screen z-[70]"
+            style={{
+              backdropFilter: 'blur(5px)'
+            }}
           >
             <motion.span
               initial={{

@@ -143,9 +143,7 @@ function News() {
   return (
     <>
       {loading ? (
-        <div className="grid place-items-center h-96">
-          <h1>load</h1>
-        </div>
+        <></>
       ) : error ? (
         <div className="grid place-items-center h-auto my-8 lg:my-44">
           <h1>Error</h1>
@@ -153,7 +151,7 @@ function News() {
       ) : (
         <>
           {filter.length > 0 ? (
-            <section className="pt-28 lg:px-0 px-6">
+            <section className="pt-8 xl:pt-28 lg:px-0 px-6">
               <div className="grid grid-cols-3 items-center">
                 <span className="col-span-3 flex flex-row gap-1 items-center">
                   <svg
@@ -164,13 +162,59 @@ function News() {
                   >
                     <path d="M10 15q-2.083 0-3.542-1.458Q5 12.083 5 10q0-2.083 1.458-3.542Q7.917 5 10 5q2.083 0 3.542 1.458Q15 7.917 15 10q0 2.083-1.458 3.542Q12.083 15 10 15z" />
                   </svg>
-                  <h1 className="flex justify-start text-white/80 font-bold text-xl capitalize">
+                  <h1 className="flex justify-start text-white/80 font-bold text-lg xl:text-xl capitalize">
                     Novedades de la semana
                   </h1>
                 </span>
                 <hr className="border-zinc-800 w-full mt-2 col-span-3 mb-8" />
               </div>
-              <div className="relative cursor-move">
+              <div className="xl:hidden block relative cursor-move">
+                <Splide
+                  hasTrack={false}
+                  options={{
+                    type: 'loop',
+                    pagination: false,
+                    perPage: 1,
+                    perMove: 1,
+                    rewindByDrag: false,
+                    speed: 1000,
+                    autoplay: true,
+                    gap: '1em',
+                    arrows: true,
+                    fade: true
+                  }}
+                >
+                  <SplideTrack>
+                    {filter.map((product) => (
+                      <SplideSlide key={product._id}>
+                        <ProductNew
+                          product={product}
+                          handleProduct={handleProduct}
+                        />
+                      </SplideSlide>
+                    ))}
+                  </SplideTrack>
+
+                  <div className="splide__arrows flex flex-row gap-2 justify-center">
+                    <button className="pt-8 col-span-1 flex justify-start splide__arrow--prev">
+                      <span className="py-1 px-2 border rounded-md border-white/20 bg-zinc-800">
+                        <Left
+                          className="fill-white/50 hover:fill-white/80"
+                          style={{
+                            transform: 'rotate(360deg)'
+                          }}
+                        />
+                      </span>
+                    </button>
+                    <button className="pt-8 col-span-1 flex justify-end splide__arrow--next">
+                      <span className="py-1 px-2 border rounded-md border-white/20 bg-zinc-800">
+                        <RightA className="fill-white/50 hover:fill-white/80" />
+                      </span>
+                    </button>
+                  </div>
+                </Splide>
+              </div>
+              <div className="hidden xl:block relative cursor-move">
                 <Splide
                   hasTrack={false}
                   options={{

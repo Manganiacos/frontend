@@ -12,35 +12,66 @@ function Slider() {
   const img2 = 'https://i.ibb.co/hdFkLwY/BANNER-PANINI-2022-01.jpg';
 
   return (
-    <span className="cursor-move">
-      <Splide
-        options={{
-          type: 'loop',
-          perPage: 1,
-          rewind: true,
-          speed: 1000,
-          autoplay: true,
-          arrows: false,
-          pagination: false,
-          gap: '8px'
-        }}
-      >
-        <SplideSlide>
-          <img
-            src={img1}
-            className="h-[800px] w-full object-cover rounded-lg"
-            alt="Image 1"
-          />
-        </SplideSlide>
-        <SplideSlide>
-          <img
-            src={img2}
-            className="h-[800px] w-full object-cover rounded-lg"
-            alt="Image 3"
-          />
-        </SplideSlide>
-      </Splide>
-    </span>
+    <>
+      <span className="cursor-move xl:hidden block">
+        <Splide
+          options={{
+            type: 'loop',
+            perPage: 1,
+            rewind: true,
+            speed: 1000,
+            autoplay: true,
+            arrows: false,
+            pagination: false,
+            gap: '8px'
+          }}
+        >
+          <SplideSlide>
+            <img
+              src={img1}
+              className="h-[200px] w-full object-cover"
+              alt="Image 1"
+            />
+          </SplideSlide>
+          <SplideSlide>
+            <img
+              src={img2}
+              className="h-[200px] w-full object-cover"
+              alt="Image 3"
+            />
+          </SplideSlide>
+        </Splide>
+      </span>
+      <span className="cursor-move hidden xl:block">
+        <Splide
+          options={{
+            type: 'loop',
+            perPage: 1,
+            rewind: true,
+            speed: 1000,
+            autoplay: true,
+            arrows: false,
+            pagination: false,
+            gap: '8px'
+          }}
+        >
+          <SplideSlide>
+            <img
+              src={img1}
+              className="h-[800px] w-full object-cover rounded-lg"
+              alt="Image 1"
+            />
+          </SplideSlide>
+          <SplideSlide>
+            <img
+              src={img2}
+              className="h-[800px] w-full object-cover rounded-lg"
+              alt="Image 3"
+            />
+          </SplideSlide>
+        </Splide>
+      </span>
+    </>
   );
 }
 

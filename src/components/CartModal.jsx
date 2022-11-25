@@ -63,10 +63,10 @@ function CartModal(props) {
           <h1 className="text-white/80 text-xs font-bold">
             {price.substring(0, price.length - 3)}
           </h1>
-          <h1 className="text-white/80 text-xs font-bold">
+          <h1 className="text-white/80 text-xs font-bold capitalize">
             Editorial {product.editorial}
           </h1>
-          <h1 className="text-white/80 text-xs font-bold">
+          <h1 className="text-white/80 text-xs font-bold capitalize">
             {product.category}
           </h1>
         </span>

@@ -8,6 +8,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from 'react';
+import { Menu, Transition } from '@headlessui/react';
 import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +17,7 @@ import { logout } from '../actions/userActions';
 
 import Category from './Category';
 import MenuC from '../assets/svg/menu';
+import MenuB from '../assets/svg/menuB';
 
 import Location from '../assets/svg/location';
 import More from '../assets/svg/more';
@@ -28,15 +30,17 @@ import Info from '../assets/svg/info';
 import Whatsapp from '../assets/svg/whatsapp';
 import Facebook from '../assets/svg/facebook';
 
-import CartButton from './buttons/CartButton';
 import Address from './Address';
+import CartShop from './CartShop';
 import Logout from './Logout';
 
 import logo from '../assets/img/logo.jpg';
 import Search from './Search';
+import SearchB from '../assets/svg/searchB';
 
 function Navbar() {
   const location = useLocation();
+  const [isOpen, setOpen] = useCycle(false, true);
 
   const cart = useSelector((state) => state.cart);
   const { cartItems, shippingAddress } = cart;
@@ -82,7 +86,7 @@ function Navbar() {
 
   return (
     <>
-      <section className="w-full">
+      <section className="w-full hidden xl:block">
         <div className="flex justify-between pt-8 items-center container mx-auto px-8 xl:px-0">
           <span className="flex flex-row gap-8">
             {path.map((item) => (
@@ -132,7 +136,7 @@ function Navbar() {
               </Link>
             )}
             <span className="relative">
-              <CartButton />
+              <CartShop />
               <h1
                 style={{ fontSize: '10px' }}
                 className="rounded-full border border-white/20 bg-zinc-800 text-white/80 flex font-normal justify-center absolute px-1.5 py-0.5 top-0 left-3.5"
@@ -160,6 +164,67 @@ function Navbar() {
           <span className="z-[10]">{userInfo ? <Address /> : <></>}</span>
         </div>
       </section>
+
+      <Menu as="div">
+        {({ open }) => (
+          <>
+            <section className="w-full xl:hidden block">
+              <div className="flex justify-between px-8 py-4 items-center bg-black/30">
+                <div className="flex">
+                  <MenuB className="fill-white/60 hover:fill-white/80" />
+                </div>
+                <div className="flex flex-row gap-2 items-center">
+                  <Menu.Button
+                    type="button"
+                    className="focus:outline-none"
+                    onClick={open}
+                  >
+                    <SearchB className="fill-white/60 hover:fill-white/80" />
+                  </Menu.Button>
+                  <span className="relative">
+                    <CartShop />
+                    <h1
+                      style={{ fontSize: '10px' }}
+                      className="rounded-full border border-white/20 bg-zinc-800 text-white/80 flex font-normal justify-center absolute px-1.5 py-0.5 top-0 left-3.5"
+                    >
+                      {cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                    </h1>
+                  </span>
+                </div>
+              </div>
+              <AnimatePresence exitBeforeEnter>
+                <Menu.Items>
+                  {open && (
+                    <motion.div
+                      initial={{
+                        height: 0,
+                        opacity: 1,
+                        transition: { duration: 0.5, ease: 'easeInOut' }
+                      }}
+                      animate={{
+                        height: 'auto'
+                      }}
+                      exit={{
+                        opacity: 0,
+                        height: 0,
+                        transition: {
+                          duration: 0.5,
+                          ease: 'easeInOut',
+                          delay: 0.3
+                        }
+                      }}
+                    >
+                      <div className="bg-black/30 px-8 pb-4">
+                        <Search />
+                      </div>
+                    </motion.div>
+                  )}
+                </Menu.Items>
+              </AnimatePresence>
+            </section>
+          </>
+        )}
+      </Menu>
     </>
   );
 }
