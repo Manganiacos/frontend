@@ -444,9 +444,9 @@ function ProductPage() {
               backdropFilter: 'blur(5px)'
             }}
           >
-            <div className="fixed top-2 left-1/2 transform -translate-x-1/2 flex flex-col gap-3 rounded-md xl:p-8 p-0 xl:w-auto w-full xl:px-0 px-4">
-              <span className="flex justify-between items-center">
-                <h1 className="text-white/80 w-full text-sm">
+            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full rounded-md xl:p-8 p-0 xl:w-auto xl:px-0 px-6 flex flex-col gap-2">
+              <span className="flex flex-row gap-4 justify-between items-center w-full">
+                <h1 className="text-white/80 w-full xl:text-sm text-xs">
                   Vista previa de la imagen
                 </h1>
                 <button
