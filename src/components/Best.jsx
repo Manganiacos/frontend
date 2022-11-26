@@ -4,7 +4,7 @@ import React from 'react';
 function Best() {
   const img = 'https://pbs.twimg.com/media/FOuv4FWUcAES64P.jpg';
   return (
-    <section className="flex flex-col xl:pt-20 pt-12 px-8">
+    <section className="flex flex-col xl:pt-14 pt-12 xl:px-0 px-8">
       <span className="flex flex-row gap-1 items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

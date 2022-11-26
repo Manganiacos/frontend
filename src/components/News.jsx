@@ -20,6 +20,7 @@ import { useLocation } from 'react-router-dom';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import { listProductsAll } from '../actions/productActions';
 
+import Loader from './loaders/Loader';
 import Arrow from '../assets/svg/arrow';
 import Left from '../assets/svg/left';
 import RightA from '../assets/svg/rightA';
@@ -143,7 +144,9 @@ function News() {
   return (
     <>
       {loading ? (
-        <></>
+        <span className="flex justify-center items-center w-full h-[200px]">
+          <Loader color="#eee" size={80} />
+        </span>
       ) : error ? (
         <div className="grid place-items-center h-auto my-8 lg:my-44">
           <h1>Error</h1>
