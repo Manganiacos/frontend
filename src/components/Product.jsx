@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-underscore-dangle */
@@ -21,6 +22,7 @@ import { addToCart } from '../actions/cartActions';
 function Product(props) {
   const [show, setShow] = useState(false);
   const [qty, setQty] = useState(1);
+  const [name, setName] = useState(props.product.name.toLowerCase());
 
   const dispatch = useDispatch();
 
@@ -59,10 +61,10 @@ function Product(props) {
   };
 
   return (
-    <section className="absolute bg-zinc-900 top-0 right-0 flex h-full lg:w-[500px] w-full flex-col rounded-l-lg">
+    <section className="absolute bg-zinc-900 top-0 right-0 flex h-full lg:w-[500px] w-full flex-col xl:rounded-l-lg rounded-none">
       <div className="flex flex-col">
         <div className="grid grid-cols-2 gap-56 p-5">
-          <div className="col-span-1 flex justify-start gap-3 items-center">
+          <div className="col-span-1 flex justify-start gap-3 items-center xl:w-full w-44">
             <span>
               <Fast className="fill-white/50" />
             </span>
@@ -124,24 +126,25 @@ function Product(props) {
           </div>
           <div className="col-span-2 flex flex-col gap-1">
             <div className="grid grid-cols-2 gap-10">
-              <div className="col-span-2">
+              <div className="col-span-2 flex flex-col gap-1">
                 <span className="flex items-center">
-                  <h1 className="pb-3 text-white/80 text-sm font-bold tracking-normal w-80">
-                    {props.product.name} VOL. {props.product.volume}
+                  <h1 className="text-white/80 text-sm font-bold tracking-normal w-80 capitalize">
+                    {name.charAt(0).toUpperCase() + name.slice(1)} Vol.{' '}
+                    {props.product.volume}
                   </h1>
                 </span>
                 <span className="flex items-center">
-                  <h1 className="text-white/80 text-xs font-bold capitalize">
+                  <h1 className="text-white/80 text-xs font-normal capitalize">
                     {price.substring(0, price.length - 3)}
                   </h1>
                 </span>
                 <span className="flex items-center">
-                  <h1 className="text-white/80 text-xs font-bold capitalize">
+                  <h1 className="text-white/80 text-xs font-normal capitalize">
                     Editorial {props.product.editorial}
                   </h1>
                 </span>
                 <span className="flex items-center">
-                  <h1 className="text-white/80 text-xs font-bold capitalize">
+                  <h1 className="text-white/80 text-xs font-normal capitalize">
                     {props.product.category}
                   </h1>
                 </span>
@@ -181,7 +184,7 @@ function Product(props) {
           </div>
           <div className="col-span-3">
             <span>
-              <p className="text-white/80 text-sm w-[31em] text-justify">
+              <p className="text-white/80 text-sm xl:w-full w-full text-justify">
                 {/* {props.product.description.substring(0, 500)} */}
                 {/* if description is too long, it will be cut */}
                 {props.product.description > 500
