@@ -37,6 +37,7 @@ import Logout from './Logout';
 import logo from '../assets/img/logo.jpg';
 import Search from './Search';
 import SearchB from '../assets/svg/searchB';
+import MenuNav from './MenuNav';
 
 function Navbar() {
   const location = useLocation();
@@ -171,7 +172,7 @@ function Navbar() {
             <section className="w-full xl:hidden block">
               <div className="flex justify-between px-8 py-4 items-center bg-black/30">
                 <div className="flex">
-                  <MenuB className="fill-white/60 hover:fill-white/80" />
+                  <MenuNav path={path} socialMedia={socialMedia} />
                 </div>
                 <div className="flex flex-row gap-2 items-center">
                   <Menu.Button
