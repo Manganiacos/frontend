@@ -12,16 +12,16 @@ function HomePage() {
   return (
     <>
       <SEO title="Inicio" description="Manganiacos" />
-      <section className="container mx-auto grid grid-cols-3 py-0 xl:py-12 h-full pb-56">
+      <section className="container xl:mx-auto grid grid-cols-3 py-0 xl:py-12 h-full pb-56">
         <div className="col-span-3">
           <Slider />
         </div>
         <div className="col-span-3">
           <News />
         </div>
-        {/* <div className="col-span-3">
+        <div className="col-span-3">
           <Best />
-        </div> */}
+        </div>
         <div className="col-span-3">
           <Editorials />
         </div>

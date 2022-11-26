@@ -38,7 +38,7 @@ function KamiteSection() {
     <>
       <section className="relative flex flex-col bg-black/30 rounded-lg shadow-md">
         <div className="bg-[#eee] p-14 rounded-t-lg"></div>
-        <div className="absolute right-9 top-10">
+        <div className="absolute xl:right-9 right-14 top-10 xl:top-10">
           <div className="bg-zinc-800 px-12 rounded-lg m-2 relative shadow-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-80">
             <Kamite />
           </div>

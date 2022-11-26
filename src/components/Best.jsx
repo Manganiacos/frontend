@@ -4,7 +4,7 @@ import React from 'react';
 function Best() {
   const img = 'https://pbs.twimg.com/media/FOuv4FWUcAES64P.jpg';
   return (
-    <section className="flex flex-col pt-20">
+    <section className="flex flex-col xl:pt-20 pt-12 px-8">
       <span className="flex flex-row gap-1 items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -19,15 +19,15 @@ function Best() {
         </h1>
       </span>
       <hr className="border-zinc-800 w-full mt-2" />
-      <div className="grid grid-cols-6 gap-8 px-16 pt-10">
-        <div className="col-span-3 rounded-md bg-black/30 shadow-lg">
+      <div className="grid grid-cols-6 gap-8 xl:px-16 pt-10">
+        <div className="xl:col-span-3 col-span-6 rounded-md bg-black/30 shadow-lg">
           <div className="grid grid-cols-2">
-            <div className="col-span-1 flex justify-start p-8 relative">
+            <div className="xl:col-span-1 col-span-2 flex justify-start p-8 relative">
               <span className="flex flex-col gap-7">
-                <h1 className="text-white/50 tracking-widest dark:text-zinc-300 font-bold uppercase">
+                <h1 className="text-white/50 tracking-widest xl:text-sm text-xs font-bold uppercase">
                   Por compras superiores a $150.000
                 </h1>
-                <p className="text-zinc-300 uppercase tracking-widest dark:text-zinc-100 font-bold text-3xl">
+                <p className="text-zinc-300 uppercase tracking-widest font-bold xl:text-xl text-lg">
                   MANGAS HASTA UN 5% OFF
                 </p>
                 <span className="flex justify-start">
@@ -40,23 +40,23 @@ function Best() {
                 </span>
               </span>
             </div>
-            <div className="col-span-1 flex justify-end">
+            <div className="xl:col-span-1 col-span-2 flex justify-end">
               <img
                 src={img}
                 alt="Libros hasta un 30% off"
-                className="rounded-r-md object-cover"
+                className="xl:rounded-tr-md xl:rounded-br-md rounded-b-md xl:rounded-bl-none object-cover h-64 w-full"
               />
             </div>
           </div>
         </div>
-        <div className="col-span-3 rounded-md bg-black/30 shadow-lg">
+        <div className="xl:col-span-3 col-span-6 rounded-md bg-black/30 shadow-lg">
           <div className="grid grid-cols-2">
-            <div className="col-span-1 flex justify-start p-8 relative">
+            <div className="xl:col-span-1 col-span-2 flex justify-start p-8 relative">
               <span className="flex flex-col gap-7">
-                <h1 className="text-white/50 tracking-widest dark:text-zinc-300 font-bold uppercase">
+                <h1 className="text-white/50 tracking-widest xl:text-sm text-xs font-bold uppercase">
                   Por compras superiores a $300.000
                 </h1>
-                <p className="text-zinc-300 uppercase tracking-widest dark:text-zinc-100 font-bold text-3xl">
+                <p className="text-zinc-300 uppercase tracking-widest font-bold xl:text-xl text-lg">
                   MANGAS HASTA UN 10% OFF
                 </p>
                 <span className="flex justify-start">
@@ -69,11 +69,11 @@ function Best() {
                 </span>
               </span>
             </div>
-            <div className="col-span-1 flex justify-end">
+            <div className="xl:col-span-1 col-span-2 flex justify-end">
               <img
                 src={img}
                 alt="Libros hasta un 30% off"
-                className="rounded-r-md object-cover"
+                className="xl:rounded-tr-md xl:rounded-br-md rounded-b-md xl:rounded-bl-none object-cover h-64 w-full"
               />
             </div>
           </div>

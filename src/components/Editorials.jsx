@@ -10,7 +10,7 @@ import KamiteSection from './sections/KamiteSection';
 function Sections() {
   return (
     <>
-      <section className="flex flex-col pt-20 px-4 lg:px-0">
+      <section className="flex flex-col pt-20 px-8 xl:px-0">
         <span className="flex flex-row gap-1 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
