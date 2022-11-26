@@ -58,7 +58,7 @@ function CartModal(props) {
           />
         </Link>
         <span className="flex flex-col gap-1">
-          <h1 className="text-white/80 text-sm font-bold capitalize w-44">
+          <h1 className="text-white/80 text-sm font-bold capitalize xl:w-44 w-full">
             {name.charAt(0).toUpperCase() + name.slice(1)} Vol. {product.volume}
           </h1>
           <h1 className="text-white/80 text-xs font-normal">
