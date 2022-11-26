@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-no-useless-fragment */
@@ -72,9 +73,9 @@ function CartShop() {
               className="fixed top-0 left-0 w-screen h-screen z-[70]"
             >
               <>
-                <section className="absolute bg-zinc-900 top-0 right-0 flex h-full lg:w-[500px] w-full flex-col rounded-l-lg">
-                  <div className="grid grid-cols-2 gap-56 p-5">
-                    <div className="col-span-1 flex justify-start gap-3 items-center">
+                <section className="absolute bg-zinc-900 top-0 right-0 flex h-full xl:w-[500px] w-full flex-col xl:rounded-l-lg">
+                  <div className="grid grid-cols-2 gap-56 p-5 w-full">
+                    <div className="col-span-1 flex justify-start gap-3 items-center w-56">
                       <span>
                         <Bags className="fill-white/80" />
                       </span>
@@ -125,9 +126,9 @@ function CartShop() {
                     </section>
                   ) : (
                     <section className="overflow-y-auto p-6 h-[670px] no-scrollbar">
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-3 xl:gap-4 gap-6">
                         {cartItems.map((product) => (
-                          <CartModal product={product} />
+                          <CartModal product={product} key={product._id} />
                         ))}
                       </div>
                     </section>
@@ -137,20 +138,20 @@ function CartShop() {
                     <></>
                   ) : (
                     <section className="flex flex-col border-t border-zinc-800 px-8 py-6 gap-3">
-                      <span className="text-white/80 text-sm flex flex-row justify-between">
+                      <span className="text-white/80 xl:text-sm text-xs flex flex-row justify-between">
                         <h1>Subtotal:</h1>
                         <h1>{price.substring(0, price.length - 3)}</h1>
                       </span>
-                      <span className="text-white/80 text-sm flex flex-row justify-between">
+                      <span className="text-white/80 xl:text-sm text-xs flex flex-row justify-between">
                         <h1>Descuento:</h1>
                         <h1>- $0</h1>
                       </span>
-                      <span className="text-white/80 text-sm flex flex-row justify-between">
+                      <span className="text-white/80 xl:text-sm text-xs flex flex-row justify-between">
                         <h1>Impuestos de envío:</h1>
                         <h1>Calculado al finalizar</h1>
                       </span>
                       <hr className="border-zinc-800 px-8" />
-                      <span className="text-white/80 text-sm font-bold flex flex-row justify-between">
+                      <span className="text-white/80 xl:text-sm text-xs font-bold flex flex-row justify-between">
                         <h1>Total:</h1>
                         <h1>{price.substring(0, price.length - 3)}</h1>
                       </span>
@@ -158,7 +159,7 @@ function CartShop() {
                         {!userInfo ? (
                           <Link
                             to="/"
-                            className="w-full text-center text-sm text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
+                            className="w-full text-center xl:text-sm text-xs text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
                           >
                             <button type="button" onChange={setShow}>
                               Iniciar Sesión / Crear Cuenta
@@ -167,7 +168,7 @@ function CartShop() {
                         ) : (
                           <Link
                             to="/cart/shipping"
-                            className="w-full text-center text-sm text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
+                            className="w-full text-center xl:text-sm text-xs text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
                           >
                             <button type="button" onChange={setShow}>
                               Ir al proceso de pago
@@ -177,7 +178,7 @@ function CartShop() {
 
                         <Link
                           to="/cart"
-                          className="w-full text-center text-sm text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
+                          className="w-full text-center xl:text-sm text-xs text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
                         >
                           <button type="button" onClick={setShow}>
                             Ver carrito
