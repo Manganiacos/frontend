@@ -184,7 +184,7 @@ function Product(props) {
           </div>
           <div className="col-span-3">
             <span>
-              <p className="text-white/80 text-sm xl:w-full w-full text-justify">
+              <p className="text-white/80 xl:text-sm text-xs xl:w-full w-full text-justify">
                 {/* {props.product.description.substring(0, 500)} */}
                 {/* if description is too long, it will be cut */}
                 {props.product.description > 500
@@ -193,11 +193,11 @@ function Product(props) {
               </p>
             </span>
           </div>
-          <div className="mt-20 flex col-span-3 justify-center">
+          <div className="xl:mt-20 mt-10 flex col-span-3 justify-center">
             <button
               type="button"
               onClick={handleShow}
-              className="text-sm text-white/80 hover:text-white py-1 px-8 border rounded-md border-white/20 bg-zinc-800"
+              className="xl:text-sm text-xs text-white/80 hover:text-white py-1 px-8 border rounded-md border-white/20 bg-zinc-800 w-48"
             >
               Añadir a la cesta
             </button>
@@ -205,14 +205,14 @@ function Product(props) {
           <div className="flex col-span-3 justify-center">
             <button
               onClick={goToCart}
-              className="text-sm text-white/80 hover:text-white py-1 px-10 border rounded-md border-white/20 bg-zinc-800"
+              className="xl:text-sm text-xs text-white/80 hover:text-white py-1 px-10 border rounded-md border-white/20 bg-zinc-800 w-48"
             >
               Comprar ahora
             </button>
           </div>
           <div className="flex col-span-3 justify-center">
             <Link to={`/product/${props.product._id}`}>
-              <h2 className="text-xs font-bold underline hover:underline text-white/80 hover:text-white">
+              <h2 className="text-xs font-normal underline hover:underline text-white/60 hover:text-white/80">
                 Ver detalles
               </h2>
             </Link>
