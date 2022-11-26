@@ -21,7 +21,7 @@ function ListProduct({ list }) {
   return (
     <>
       <AnimatePresence exitBeforeEnter>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 xl:gap-4 gap-8">
           {list &&
             list.map((product) => (
               <motion.div
@@ -29,7 +29,7 @@ function ListProduct({ list }) {
                 animate={{ transform: 'scale(1)' }}
                 exit={{ transform: 'scale(0)' }}
                 key={product._id}
-                className="col-span-1"
+                className="xl:col-span-1 col-span-4"
               >
                 <Card
                   product={product}

@@ -129,9 +129,9 @@ function Checkout() {
       {locate === '/cart/shipping' && <Steps step1 step2 />}
       {locate === '/cart/payment' && <Steps step1 step2 step3 />}
       {locate === '/cart/placeorder' && <Steps step1 step2 step3 step4 />}
-      <section className="container mx-auto px-56 h-screen pt-8">
+      <section className="container mx-auto xl:px-56 px-8 h-full pt-8">
         <div className="grid grid-cols-4 gap-6">
-          <div className="col-span-3">
+          <div className="xl:col-span-3 col-span-4">
             <Routes>
               <Route path="/" element={<CartPage />} />
               <Route path="/:id" element={<CartPage />} />
@@ -140,11 +140,11 @@ function Checkout() {
               <Route path="/placeorder" element={<PlaceOrderPage />} />
             </Routes>
           </div>
-          <div className="col-span-1 flex flex-col gap-4">
+          <div className="xl:col-span-1 col-span-4 flex flex-col gap-4">
             {!userInfo ? (
               <Link
                 to="/auth/login"
-                className="text-center text-sm text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
+                className="text-center xl:text-sm text-xs text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
               >
                 <span className="flex flex-row gap-1 justify-center items-center">
                   <h1>Iniciar Sesión / Crear Cuenta</h1>
@@ -157,7 +157,7 @@ function Checkout() {
                     type="button"
                     disabled={cart.cartItems === 0}
                     onClick={placeOrder}
-                    className="text-center text-sm text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
+                    className="text-center xl:text-sm text-xs text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
                   >
                     {!formData && (
                       <h1 className="text-white/80 hover:text-white text-sm font-normal">
@@ -186,9 +186,9 @@ function Checkout() {
                 )} */}
               </>
             )}
-            <span className="text-sm text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800">
+            <span className="xl:text-sm text-xs text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800">
               <span className="flex flex-row justify-between items-center">
-                <h1 className="flex flex-row gap-1 items-center">
+                <h1 className="flex flex-row xl:gap-1 gap-2 items-center">
                   <Cupon className="fill-white/80" />
                   Cupon de Descuento
                 </h1>

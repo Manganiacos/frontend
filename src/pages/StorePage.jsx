@@ -134,16 +134,18 @@ function StorePage() {
   return (
     <>
       <SEO title="Tienda Comics y Mangas" description="Manganiacos" />
-      <section className="container mx-auto grid grid-cols-4 gap-6 pt-12 pb-56 h-full">
-        <FilterPanel
-          clearFilters={handleClearFilters}
-          selectedEditorial={selectedEditorial}
-          selectEditorial={handleSelectEditorial}
-          categories={categories}
-          changeChecked={handleChangeChecked}
-          handleValue={handleValue}
-        />
-        <section className="col-span-3 flex flex-col gap-8">
+      <section className="container mx-auto grid grid-cols-4 gap-6 pt-12 pb-56 h-full xl:px-0 px-8">
+        <span className="hidden xl:block">
+          <FilterPanel
+            clearFilters={handleClearFilters}
+            selectedEditorial={selectedEditorial}
+            selectEditorial={handleSelectEditorial}
+            categories={categories}
+            changeChecked={handleChangeChecked}
+            handleValue={handleValue}
+          />
+        </span>
+        <section className="xl:col-span-3 col-span-4 flex flex-col gap-8">
           <span className="flex gap-4 w-full items-center">
             <SearchBar
               value={searchInput}
@@ -172,7 +174,7 @@ function StorePage() {
                 </div>
               </>
             ) : (
-              <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl h-80">
+              <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl xl:h-80 h-56 text-center">
                 No se encontraron resultados para tu búsqueda
               </span>
             )}

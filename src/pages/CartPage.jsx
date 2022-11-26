@@ -58,25 +58,25 @@ function CartPage() {
 
       <section className="h-full w-full">
         <div className="flex flex-col gap-6">
-          <h1 className="flex justify-between items-center">
-            <span className="flex flex-col gap-1">
-              <h1 className="text-2xl text-white/80 font-bold">
+          <h1 className="flex justify-between xl:items-center items-center">
+            <span className="flex flex-col gap-1 ">
+              <h1 className="xl:text-2xl text-lg text-white/80 font-bold">
                 Mi Carrito de compras
               </h1>
-              <h1 className="text-sm text-white/80">
+              <h1 className="xl:text-sm text-xs text-white/80">
                 Revisa y confirma tu orden
               </h1>
             </span>
             <Link
               to="/store"
-              className="text-sm text-white/80 hover:text-white font-normal underline"
+              className="xl:text-sm text-xs text-white/80 hover:text-white font-normal underline"
             >
               Volver a la tienda
             </Link>
           </h1>
-          <h1 className="flex flex-row gap-4 items-start text-xs text-white/80">
+          <h1 className="flex flex-row xl:gap-4 gap-2 items-start text-xs text-white/80">
             <Info className="fill-white/80" />
-            <span className="flex flex-col gap-3">
+            <span className="flex flex-col gap-3 w-full">
               <h1>El envio tiene un costo de $12.000</h1>
               <h1>
                 Por la compra de 3 mangas o mas el envio es gratis en todo el
@@ -86,12 +86,12 @@ function CartPage() {
           </h1>
           <span className="flex flex-col gap-2">
             <span className="flex justify-between items-center">
-              <h1 className="text-md text-white/80">Mis Mangas</h1>
+              <h1 className="xl:text-md text-sm text-white/80">Mis Mangas</h1>
               {cartItems.length > 0 && (
                 <button
                   type="button"
                   onClick={shippingHandler}
-                  className="text-center text-sm text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
+                  className="text-center xl:text-sm text-xs text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
                 >
                   <span className="flex flex-row gap-1 justify-center items-center">
                     <h1>Ir al proceso de pago</h1>
@@ -99,20 +99,20 @@ function CartPage() {
                 </button>
               )}
             </span>
-            <hr className="border-white/40 rounded-full" />
+            <hr className="border-zinc-800 rounded-full" />
           </span>
           {/* <hr className="border-white/20 rounded-full" /> */}
           {cartItems.length === 0 ? (
-            <div className="grid place-items-center gap-4 h-auto">
+            <div className="grid place-items-center gap-4 h-auto xl:py-0 py-16">
               <div className="border border-dashed rounded-full p-8 border-white/20 bg-zinc-800">
                 <Mall className="fill-white/20" />
               </div>
-              <h1 className="text-center text-sm font-normal text-white/80">
+              <h1 className="text-center xl:text-sm text-xs font-normal text-white/80">
                 Su carrito está vacío
               </h1>
               <Link
                 to="/store"
-                className="text-sm text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
+                className="xl:text-sm text-xs text-white/80 hover:text-white py-1 px-2 border rounded-md border-white/20 bg-zinc-800"
               >
                 Empezar a Comprar
               </Link>
