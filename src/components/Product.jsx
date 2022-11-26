@@ -102,10 +102,9 @@ function Product(props) {
               exit={{
                 opacity: 0,
                 height: 0,
-                transition: { duration: 0.5, ease: 'easeInOut', delay: 0.3 }
+                transition: { duration: 0.2, ease: 'easeInOut', delay: 0.9 }
               }}
-              // className="fixed top-[178px] bg-black/80 w-full shadow-lg"
-              className="top-0 left-0 right-0 bottom-0"
+              className="fixed xl:absolute left-0 w-full top-[4.6em] xl:top-[4.6em]"
             >
               <>
                 <Message />

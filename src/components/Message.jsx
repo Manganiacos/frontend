@@ -20,7 +20,7 @@ function Message() {
             <span className="flex items-center">
               <Check fill="white" />
             </span>
-            <span className="text-sm font-normal text-white flex items-center">
+            <span className="xl:text-sm text-xs font-normal text-white flex items-center">
               ¡Articulo añadido a su cesta!
             </span>
           </div>

@@ -100,17 +100,40 @@ function Address() {
 
   return (
     <section className="flex relative col-span-1 justify-end z-[40]">
-      <button type="button" onClick={open} className="flex flex-row gap-1">
-        <Location className="fill-white" />
-        <h1 className="text-sm text-white font-normal">
-          {userInfo && ciudad && pais
-            ? `Enviar a ${
-                pais.charAt(0).toUpperCase() + pais.slice(1)
-              }, ${ciudad}`
-            : 'Ingresa tu Ubicación'}
-        </h1>
-        <More className="fill-white" />
-      </button>
+      <div className="xl:hidden block">
+        <button
+          type="button"
+          onClick={open}
+          className="flex flex-row gap-1 items-center"
+        >
+          <Location className="fill-white/80" />
+          <h1 className="text-xs text-white font-normal">
+            {userInfo && ciudad && pais
+              ? `Enviar a ${
+                  pais.charAt(0).toUpperCase() + pais.slice(1)
+                }, ${ciudad}`
+              : 'Ingresa tu Ubicación'}
+          </h1>
+          <More className="fill-white" />
+        </button>
+      </div>
+      <div className="hidden xl:block">
+        <button
+          type="button"
+          onClick={open}
+          className="flex flex-row gap-1 items-center"
+        >
+          <Location className="fill-white" />
+          <h1 className="text-sm text-white font-normal">
+            {userInfo && ciudad && pais
+              ? `Enviar a ${
+                  pais.charAt(0).toUpperCase() + pais.slice(1)
+                }, ${ciudad}`
+              : 'Ingresa tu Ubicación'}
+          </h1>
+          <More className="fill-white" />
+        </button>
+      </div>
       <AnimatePresence exitBeforeEnter>
         {show && (
           <motion.div
