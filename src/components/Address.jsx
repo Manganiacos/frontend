@@ -182,7 +182,7 @@ function Address() {
                             </span>
                           </div>
                           <div className="flex flex-col gap-1">
-                            <span className="flex flex-col gap-2 relative w-full z-[3]">
+                            <span className="flex flex-col gap-2 relative w-full">
                               <Select
                                 state={selectCity}
                                 className="h-8 pl-12 text-sm text-white px-3 border rounded-md border-white/20 bg-zinc-800 xl:w-[200px] w-full flex justify-between items-center"
@@ -190,7 +190,7 @@ function Address() {
                               <City className="fill-white absolute top-1/2 left-3 transform -translate-y-1/2" />
                               <SelectPopover
                                 state={selectCity}
-                                className="overflow-y-scroll no-scrollbar xl:h-56 h-20 w-full relative overflow-hidden border rounded-md border-white/20 bg-zinc-800 flex flex-col gap-1 text-sm text-white"
+                                className="overflow-y-scroll no-scrollbar xl:h-56 h-28 w-full relative overflow-hidden border rounded-md border-white/20 bg-zinc-800 flex flex-col gap-1 text-sm text-white"
                               >
                                 <SelectItem
                                   className="select-item"
