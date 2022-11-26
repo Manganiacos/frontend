@@ -39,14 +39,14 @@ function EccSection() {
   return (
     <>
       <section className="relative flex flex-col bg-black/30 rounded-lg shadow-md">
-        <div className="bg-[#F47429] p-14 rounded-t-lg"></div>
-        <div className="absolute xl:right-9 right-14 top-10 xl:top-10">
+        <div className="bg-[#F47429] p-14 rounded-t-lg absolute w-full"></div>
+        <div className="relative flex justify-center items-center pt-10">
           <div className="bg-zinc-800 px-12 rounded-lg m-2 relative shadow-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-80">
             <img src={ecc} alt="ecc" className="w-24 py-6" />
           </div>
         </div>
-        <div className="pt-[2em]">
-          <div className="grid grid-cols-3 gap-3 px-8 pt-6 pb-6">
+        <div className="pt-6">
+          <div className="grid grid-cols-3 gap-3 px-8 pb-6">
             {loading ? (
               <div className="col-span-3 flex justify-center">
                 <Loader color="#eee" size={40} />
