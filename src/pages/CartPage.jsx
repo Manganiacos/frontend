@@ -103,7 +103,7 @@ function CartPage() {
           </span>
           {/* <hr className="border-white/20 rounded-full" /> */}
           {cartItems.length === 0 ? (
-            <div className="grid place-items-center gap-4 h-auto xl:py-0 py-16">
+            <div className="grid place-items-center gap-4 h-auto xl:py-8 py-16 xl:mb-56 mb-0">
               <div className="border border-dashed rounded-full p-8 border-white/20 bg-zinc-800">
                 <Mall className="fill-white/20" />
               </div>

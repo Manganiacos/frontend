@@ -7,6 +7,7 @@ import SEO from '../components/SEO';
 import News from '../components/News';
 import Best from '../components/Best';
 import Editorials from '../components/Editorials';
+import HomeMore from '../components/HomeMore';
 
 function HomePage() {
   return (
@@ -24,6 +25,9 @@ function HomePage() {
         </div>
         <div className="col-span-3">
           <Editorials />
+        </div>
+        <div className="col-span-3">
+          <HomeMore />
         </div>
       </section>
     </>

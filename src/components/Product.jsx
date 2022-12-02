@@ -192,30 +192,39 @@ function Product(props) {
               </p>
             </span>
           </div>
-          <div className="xl:mt-20 mt-10 flex col-span-3 justify-center">
-            <button
-              type="button"
-              onClick={handleShow}
-              className="xl:text-sm text-xs text-white/80 hover:text-white py-1 px-8 border rounded-md border-white/20 bg-zinc-800 w-48"
-            >
-              Añadir a la cesta
-            </button>
-          </div>
-          <div className="flex col-span-3 justify-center">
-            <button
-              onClick={goToCart}
-              className="xl:text-sm text-xs text-white/80 hover:text-white py-1 px-10 border rounded-md border-white/20 bg-zinc-800 w-48"
-            >
-              Comprar ahora
-            </button>
-          </div>
-          <div className="flex col-span-3 justify-center">
-            <Link to={`/product/${props.product._id}`}>
-              <h2 className="text-xs font-normal underline hover:underline text-white/60 hover:text-white/80">
-                Ver detalles
-              </h2>
-            </Link>
-          </div>
+          {props.product.countInStock === 0 && (
+            <h1 className="mt-10 col-span-3 text-white/80 font-normal xl:text-sm text-xs text-center px-3 py-1 border rounded-md border-white/20 bg-zinc-800">
+              Lo siento pero este producto no está disponible en este momento
+            </h1>
+          )}
+          {props.product.countInStock > 0 && (
+            <section className="col-span-3 grid gap-2 justify-center items-center w-full">
+              <div className="xl:mt-20 mt-10 flex col-span-3 justify-center">
+                <button
+                  type="button"
+                  onClick={handleShow}
+                  className="xl:text-sm text-xs text-white/80 hover:text-white py-1 px-8 border rounded-md border-white/20 bg-zinc-800 w-48"
+                >
+                  Añadir a la cesta
+                </button>
+              </div>
+              <div className="flex col-span-3 justify-center">
+                <button
+                  onClick={goToCart}
+                  className="xl:text-sm text-xs text-white/80 hover:text-white py-1 px-10 border rounded-md border-white/20 bg-zinc-800 w-48"
+                >
+                  Comprar ahora
+                </button>
+              </div>
+              <div className="flex col-span-3 justify-center">
+                <Link to={`/product/${props.product._id}`}>
+                  <h2 className="text-xs font-normal underline hover:underline text-white/60 hover:text-white/80">
+                    Ver detalles
+                  </h2>
+                </Link>
+              </div>
+            </section>
+          )}
         </section>
       </div>
     </section>

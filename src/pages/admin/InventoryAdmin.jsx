@@ -1,13 +1,17 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import ReactTooltip from 'react-tooltip';
 import Delete from '../../components/Delete';
+
+import Pagination from '../../components/Pagination';
 
 import InventoryProduct from '../../components/InventoryProduct';
 import {
@@ -50,6 +54,16 @@ function Inventory() {
     success: successCreate,
     product: createdProduct
   } = productCreate;
+
+  const PageSize = 5;
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return products.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
@@ -182,7 +196,7 @@ function Inventory() {
                         </tr>
                       </thead>
                       <tbody>
-                        {products.map((product) => (
+                        {currentTableData.map((product) => (
                           <InventoryProduct
                             key={product._id}
                             product={product}
@@ -192,6 +206,14 @@ function Inventory() {
                       </tbody>
                     </table>
                   </div>
+                  <span className="flex justify-center mt-8">
+                    <Pagination
+                      currentPage={currentPage}
+                      totalCount={products.length}
+                      pageSize={PageSize}
+                      onPageChange={(page) => setCurrentPage(page)}
+                    />
+                  </span>
                 </div>
               </div>
             </div>

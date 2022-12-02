@@ -13,6 +13,7 @@ import Favorite from '../assets/svg/favorite';
 import LogoutIcon from '../assets/svg/logout';
 import Order from '../assets/svg/order';
 import Profile from '../assets/svg/profile';
+import Notify from '../assets/svg/notify';
 
 function Logout() {
   const [name, setName] = useState('');
@@ -82,6 +83,10 @@ function Logout() {
                 <span className="cursor-pointer flex flex-row gap-1 items-center px-2 text-white/80 fill-white/80 hover:fill-white hover:text-white">
                   <Profile />
                   <h1 className="font-normal text-xs ">Mi perfil</h1>
+                </span>
+                <span className="cursor-pointer flex flex-row gap-1 items-center px-2 text-white/80 fill-white/80 hover:fill-white hover:text-white">
+                  <Notify />
+                  <h1 className="font-normal text-xs ">Notificaciones</h1>
                 </span>
                 <Link to="/orders">
                   <span className="cursor-pointer flex flex-row gap-1 items-center px-2 text-white/80 fill-white/80 hover:fill-white hover:text-white">
