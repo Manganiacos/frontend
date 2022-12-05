@@ -23,7 +23,7 @@ import TestPage from '../pages/TestPage';
 
 function Base() {
   return (
-    <main className="bg-zinc-900 h-full">
+    <main className="bg-zinc-900 h-full w-full">
       <Router>
         <Navbar />
         <Routes>

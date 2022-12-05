@@ -1,27 +1,20 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable jsx-a11y/img-redundant-alt */
-/* eslint-disable react/button-has-type */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable no-undef */
-/* eslint-disable consistent-return */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable func-names */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable array-callback-return */
-/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/self-closing-comp */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
+/* eslint-disable func-names */
 /* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/button-has-type */
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import { listProductsAll } from '../actions/productActions';
+import { listProductsNew } from '../actions/productActions';
 
 import Loader from './loaders/Loader';
-import Arrow from '../assets/svg/arrow';
+// import Arrow from '../assets/svg/arrow';
 import Left from '../assets/svg/left';
 import RightA from '../assets/svg/rightA';
 import Product from './Product';
@@ -32,14 +25,13 @@ function News() {
   const location = useLocation();
 
   const [productArray, setProductArray] = useState([]);
+  const [productFilter, setProductFilter] = useState([]);
   const [openProduct, cycleOpenProduct] = useCycle(false, true);
 
   const handleProduct = (product) => {
     setProductArray(product);
     cycleOpenProduct();
   };
-
-  console.log(productArray);
 
   if (openProduct) {
     document.body.style.overflow = 'hidden';
@@ -49,8 +41,8 @@ function News() {
 
   const keyword = location.search;
 
-  const productAll = useSelector((state) => state.productAll);
-  const { error, loading, products } = productAll;
+  const productNew = useSelector((state) => state.productNew);
+  const { error, loading, products } = productNew;
 
   const productsWithDate = products
     .map((product) => {
@@ -59,6 +51,8 @@ function News() {
       return { ...product, createdAt: dateString };
     })
     .reverse();
+
+  // console.log(productsWithDate);
 
   const time = new Date();
   const day = time.getDate();
@@ -91,7 +85,7 @@ function News() {
     new Date(
       localized.year,
       localized.month - 1,
-      localized.day,
+      localized.day + 1,
       0,
       0 - OFFSET_TO_UTC,
       0
@@ -100,14 +94,19 @@ function News() {
   const parseDate = (pattern, sep, dateString) =>
     toDate(localizeDate(pattern, parseDateString(dateString, sep)));
 
+  // console.log(parseDate(['m', 'd', 'y'], '/', today));
+
   const filterByDatePattern = (pattern, sep) =>
     function (createdAt, list) {
       return list.filter((item) => {
+        console.log(createdAt);
         const itemDate = parseDate(pattern, sep, item.createdAt);
         return itemDate >= createdAt;
       });
     };
+
   const dateNow = parseDate(['m', 'd', 'y'], '/', `${today}`);
+  // console.log(dateNow);
 
   const dias = [
     'domingo',
@@ -123,21 +122,26 @@ function News() {
 
   const nombreDia = dias[numeroDia];
 
-  const dates = parseDate(['m', 'd', 'y'], '/', '08/27/2022');
+  const dates = parseDate(['m', 'd', 'y'], '/', '8/27/2022');
 
   const [available, setAvailable] = useState(dates);
 
+  // console.log('date:', available);
+  // console.log('products:', productsWithDate);
+
   const onlyUSUntil = filterByDatePattern(['m', 'd', 'y'], '/');
   const filter = onlyUSUntil(available, productsWithDate);
+  // console.log('filter:', filter);
 
   const setDate = () => {
-    if (nombreDia === 'martes') {
+    if (nombreDia === 'sábado') {
       setAvailable(dateNow);
+      // console.log('Hoy es sábado');
     }
   };
 
   useEffect(() => {
-    dispatch(listProductsAll(keyword));
+    dispatch(listProductsNew());
     setDate();
   }, [dispatch, keyword]);
 

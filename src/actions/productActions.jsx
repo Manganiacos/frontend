@@ -7,6 +7,9 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
+  PRODUCT_NEW_REQUEST,
+  PRODUCT_NEW_SUCCESS,
+  PRODUCT_NEW_FAIL,
   PRODUCT_ALL_REQUEST,
   PRODUCT_ALL_SUCCESS,
   PRODUCT_ALL_FAIL,
@@ -53,6 +56,26 @@ export const listProducts =
     }
   };
 
+export const listProductsNew = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_NEW_REQUEST });
+
+    const { data } = await axios.get(`/api/products/new`);
+
+    dispatch({
+      type: PRODUCT_NEW_SUCCESS,
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_NEW_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message
+    });
+  }
+};
 export const listProductsAll = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_ALL_REQUEST });

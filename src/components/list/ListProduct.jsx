@@ -7,7 +7,7 @@ import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import Card from '../Card';
 import Product from '../Product';
 
-function ListProduct({ list }) {
+function ListProduct({ products }) {
   const [openProduct, cycleOpenProduct] = useCycle(false, true);
 
   const [listProduct, setListProduct] = useState([]);
@@ -22,8 +22,8 @@ function ListProduct({ list }) {
     <>
       <AnimatePresence exitBeforeEnter>
         <div className="grid grid-cols-4 xl:gap-4 gap-8">
-          {list &&
-            list.map((product) => (
+          {products &&
+            products.map((product) => (
               <motion.div
                 initial={{ transform: 'scale(0)' }}
                 animate={{ transform: 'scale(1)' }}

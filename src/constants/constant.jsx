@@ -2,27 +2,33 @@
 export const editorialList = [
   {
     _id: 1,
-    name: 'panini'
+    name: 'panini',
+    slug: 'panini'
   },
   {
     _id: 2,
-    name: 'ecc ediciones'
+    name: 'ecc ediciones',
+    slug: 'ecc'
   },
   {
     _id: 3,
-    name: 'kamite'
+    name: 'kamite',
+    slug: 'kamite'
   },
   {
     _id: 4,
-    name: 'dolmen'
+    name: 'dolmen',
+    slug: 'dolmen'
   },
   {
     _id: 5,
-    name: 'ivrea'
+    name: 'ivrea',
+    slug: 'ivrea'
   },
   {
     _id: 6,
-    name: 'norma'
+    name: 'norma',
+    slug: 'norma'
   }
 ];
 

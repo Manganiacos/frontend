@@ -11,8 +11,8 @@ import React, { useState, useEffect } from 'react';
 
 function Toogle({ options, value, select, selectToggle }) {
   return (
-    <div className="flex flex-row gap-2 items-center mb-4" value={value}>
-      {options.map(({ _id, name }) => (
+    <div className="flex flex-row gap-2 items-center mb-1" value={value}>
+      {options.map(({ _id, name, slug }) => (
         <button
           type="button"
           key={_id}
@@ -25,7 +25,7 @@ function Toogle({ options, value, select, selectToggle }) {
               : 'text-xs text-white/50 hover:text-white/80 py-1 px-1 border rounded-md border-white/20 bg-zinc-800 cursor-pointer'
           } py-1 px-2 rounded-md capitalize`}
         >
-          {name}
+          {slug}
         </button>
       ))}
     </div>
