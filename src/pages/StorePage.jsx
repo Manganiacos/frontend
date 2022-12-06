@@ -44,7 +44,7 @@ function StorePage() {
   const location = useLocation();
   const keyword = location.search;
 
-  const PageSize = 4;
+  const PageSize = 12;
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -191,15 +191,27 @@ function StorePage() {
           <div>
             {resultsFound ? (
               <>
-                <div className="flex flex-col gap-8 items-center">
-                  <ListProduct products={currentTableData} />
-                  <Pagination
-                    currentPage={currentPage}
-                    totalCount={products.length}
-                    pageSize={PageSize}
-                    onPageChange={(page) => setCurrentPage(page)}
-                  />
-                </div>
+                {loading ? (
+                  <CardLoader />
+                ) : (
+                  <>
+                    {products.length > 0 ? (
+                      <div className="flex flex-col gap-8 items-center">
+                        <ListProduct products={currentTableData} />
+                        <Pagination
+                          currentPage={currentPage}
+                          totalCount={products.length}
+                          pageSize={PageSize}
+                          onPageChange={(page) => setCurrentPage(page)}
+                        />
+                      </div>
+                    ) : (
+                      <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl xl:h-80 h-56 text-center">
+                        No se encontraron resultados para tu búsqueda
+                      </span>
+                    )}
+                  </>
+                )}
               </>
             ) : (
               <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl xl:h-80 h-56 text-center">

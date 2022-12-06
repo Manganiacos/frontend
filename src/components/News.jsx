@@ -44,6 +44,8 @@ function News() {
   const productNew = useSelector((state) => state.productNew);
   const { error, loading, products } = productNew;
 
+  // console.log('products:', products);
+
   const productsWithDate = products
     .map((product) => {
       const date = new Date(product.createdAt);
@@ -94,19 +96,20 @@ function News() {
   const parseDate = (pattern, sep, dateString) =>
     toDate(localizeDate(pattern, parseDateString(dateString, sep)));
 
-  // console.log(parseDate(['m', 'd', 'y'], '/', today));
+  // console.log('HOY:', parseDate(['m', 'd', 'y'], '/', today));
 
   const filterByDatePattern = (pattern, sep) =>
     function (createdAt, list) {
       return list.filter((item) => {
-        console.log(createdAt);
+        // console.log('Creacion:', createdAt);
         const itemDate = parseDate(pattern, sep, item.createdAt);
+        // console.log('Item:', itemDate);
         return itemDate >= createdAt;
       });
     };
 
   const dateNow = parseDate(['m', 'd', 'y'], '/', `${today}`);
-  // console.log(dateNow);
+  console.log('HOY:', dateNow);
 
   const dias = [
     'domingo',
@@ -119,24 +122,28 @@ function News() {
   ];
 
   const numeroDia = new Date(today).getDay();
+  console.log('numeroDia:', numeroDia);
 
   const nombreDia = dias[numeroDia];
+  console.log('nombreDia:', nombreDia);
 
-  const dates = parseDate(['m', 'd', 'y'], '/', '8/27/2022');
+  const dates = parseDate(['d', 'm', 'y'], '/', '27/08/2022');
+  console.log('dates:', dates);
 
   const [available, setAvailable] = useState(dates);
+  console.log('available:', available);
 
-  // console.log('date:', available);
-  // console.log('products:', productsWithDate);
+  console.log('date:', available);
+  console.log('products:', productsWithDate);
 
-  const onlyUSUntil = filterByDatePattern(['m', 'd', 'y'], '/');
+  const onlyUSUntil = filterByDatePattern(['d', 'm', 'y'], '/');
   const filter = onlyUSUntil(available, productsWithDate);
   // console.log('filter:', filter);
 
   const setDate = () => {
-    if (nombreDia === 'sábado') {
+    if (nombreDia === 'martes') {
       setAvailable(dateNow);
-      // console.log('Hoy es sábado');
+      console.log('Hoy es martes');
     }
   };
 

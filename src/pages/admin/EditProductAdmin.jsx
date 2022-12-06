@@ -186,7 +186,7 @@ function EditProductAdmin() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Nombre del producto"
-                maxLength={20}
+                maxLength={80}
                 minLength={5}
               />
               <small className="text-white/60 text-xs">

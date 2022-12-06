@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-shadow */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-nested-ternary */
@@ -21,6 +22,8 @@ import {
 } from '../../actions/productActions';
 
 import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
+
+import SearchBar from '../../components/filters/SearchBar';
 
 import Left from '../../assets/svg/left';
 import Shelves from '../../assets/svg/shelves';
@@ -57,13 +60,25 @@ function Inventory() {
 
   const PageSize = 5;
 
+  const [searchInput, setSearchInput] = useState('');
+
   const [currentPage, setCurrentPage] = useState(1);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    // const { data } = await axios.get(`/api/products/?keyword=${searchInput}`);
+    // setSearchInput('');
+
+    dispatch(listProducts(`?keyword=${searchInput}`));
+    currentPage === 1 ? setCurrentPage(1) : setCurrentPage(1);
+    // console.log('search:', products);
+  };
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return products.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  }, [currentPage, products]);
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
@@ -74,7 +89,7 @@ function Inventory() {
 
     if (successCreate) {
       navigate(`product/${createdProduct._id}/edit`);
-    } else {
+    } else if (searchInput === '') {
       dispatch(listProducts(keyword));
     }
   }, [
@@ -84,7 +99,8 @@ function Inventory() {
     location,
     successDelete,
     successCreate,
-    createdProduct
+    createdProduct,
+    searchInput
   ]);
 
   const createProductHandler = () => {
@@ -99,7 +115,7 @@ function Inventory() {
   };
   return (
     <>
-      <section>
+      <form onSubmit={handleSearch}>
         <button
           type="button"
           onClick={() => navigate(-1)}
@@ -129,12 +145,19 @@ function Inventory() {
               </span>
             </ReactTooltip>
             <span className="flex flex-row gap-2 relative">
-              <input
+              <SearchBar
+                value={searchInput}
+                changeInput={(e) => setSearchInput(e.target.value)}
+                resetInput={(e) => {
+                  setSearchInput('');
+                }}
+              />
+              {/* <input
                 type="text"
                 placeholder="Buscar"
                 className="relative pl-11 w-full bg-zinc-800/80 placeholder:text-white/80 text-white rounded-md px-4 py-2 text-sm font-normal outline-none"
               />
-              <SearchIcon className="absolute top-1/2 left-3 transform -translate-y-1/2 fill-white/80" />
+              <SearchIcon className="absolute top-1/2 left-3 transform -translate-y-1/2 fill-white/80" /> */}
             </span>
           </div>
           {loading ? (
@@ -219,7 +242,7 @@ function Inventory() {
             </div>
           )}
         </div>
-      </section>
+      </form>
       {open && <Delete open={open} setOpen={setOpen} />}
     </>
   );
