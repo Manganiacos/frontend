@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-shadow */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -39,6 +40,8 @@ function StorePage() {
   const productList = useSelector((state) => state.productList);
   const { error, loading, products, page, pages } = productList;
 
+  const [list, setList] = useState([]);
+
   const [pageCount, setPageCount] = useState(1);
 
   const location = useLocation();
@@ -48,7 +51,7 @@ function StorePage() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [currentData, setCurrentData] = useState([]);
+  // const [currentData, setCurrentData] = useState([]);
 
   const [selectedEditorial, setSelectedEditorial] = useState(null);
 
@@ -69,25 +72,12 @@ function StorePage() {
 
   const [searchInput, setSearchInput] = useState('');
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    // const { data } = await axios.get(`/api/products/?keyword=${searchInput}`);
-    // setSearchInput('');
-
-    dispatch(listProducts(`?keyword=${searchInput}`));
-    currentPage === 1 ? setCurrentPage(1) : setCurrentPage(1);
-    // console.log('search:', products);
-  };
-
-  // console.log('all:', products);
-
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return products.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, products]);
-
-  const [list, setList] = useState([]);
+  // const handleSearch = async (e) => {
+  //   e.preventDefault();
+  //   await dispatch(listProducts(`?keyword=${searchInput}`));
+  //   currentPage === 1 ? setCurrentPage(1) : setCurrentPage(1);
+  //   setList(products);
+  // };
 
   const handleSelectEditorial = (event, value) =>
     !value ? null : setSelectedEditorial(value);
@@ -100,8 +90,15 @@ function StorePage() {
     setCategories(changeCheckedCategories);
   };
 
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    // return products.slice(firstPageIndex, lastPageIndex);
+    return list.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, products, list]);
+
   const handleClearFilters = () => {
-    setList(currentTableData);
+    setList(products);
     setCategories([
       { id: 1, checked: false, label: 'josei' },
       { id: 2, checked: false, label: 'seinen' },
@@ -113,7 +110,7 @@ function StorePage() {
   };
 
   const applyFilters = () => {
-    let updatedList = currentTableData;
+    let updatedList = [...products];
 
     // Editorial Filter
     if (selectedEditorial) {
@@ -134,23 +131,25 @@ function StorePage() {
     }
 
     // Search Filter
-    // if (searchInput) {
-    //   updatedList = updatedList.filter(
-    //     (item) =>
-    //       item.name.toLowerCase().search(searchInput.toLowerCase().trim()) !==
-    //       -1
-    //   );
-    // }
+    if (searchInput) {
+      updatedList = updatedList.filter((item) =>
+        item.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    }
 
     setList(updatedList);
     !updatedList.length ? setResultsFound(false) : setResultsFound(true);
   };
+  // console.log('products:', list);
 
   useEffect(() => {
     if (searchInput === '') {
       dispatch(listProducts(keyword));
+      // setList(products);
     }
-    // applyFilters();
+    // dispatch(listProducts(keyword));
+
+    applyFilters();
   }, [dispatch, selectedEditorial, categories, searchInput, keyword]);
 
   return (
@@ -167,10 +166,7 @@ function StorePage() {
             handleValue={handleValue}
           />
         </span>
-        <form
-          onSubmit={handleSearch}
-          className="xl:col-span-3 col-span-4 flex flex-col gap-8"
-        >
+        <section className="xl:col-span-3 col-span-4 flex flex-col gap-8">
           <span className="flex gap-4 w-full items-center">
             <SearchBar
               value={searchInput}
@@ -195,12 +191,12 @@ function StorePage() {
                   <CardLoader />
                 ) : (
                   <>
-                    {products.length > 0 ? (
+                    {list.length > 0 ? (
                       <div className="flex flex-col gap-8 items-center">
                         <ListProduct products={currentTableData} />
                         <Pagination
                           currentPage={currentPage}
-                          totalCount={products.length}
+                          totalCount={list.length}
                           pageSize={PageSize}
                           onPageChange={(page) => setCurrentPage(page)}
                         />
@@ -219,7 +215,7 @@ function StorePage() {
               </span>
             )}
           </div>
-        </form>
+        </section>
       </section>
     </>
   );

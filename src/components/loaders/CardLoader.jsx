@@ -7,7 +7,7 @@ function CardLoader() {
 
   return (
     <section className="container mx-auto grid grid-cols-4 gap-6">
-      <div className="col-span-4 grid grid-cols-4 gap-4">
+      <div className="xl:col-span-4 col-span-1 grid xl:grid-cols-4 grid-cols-1 gap-4">
         {cards.map((card) => (
           <ContentLoader
             key={card}

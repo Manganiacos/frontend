@@ -460,7 +460,7 @@ function ProductPage() {
               <img
                 src={product.image}
                 alt={product.name}
-                className="relative rounded-md object-cover"
+                className="relative rounded-md object-cover w-full xl:h-[40em] h-96"
               />
             </div>
           </motion.div>
