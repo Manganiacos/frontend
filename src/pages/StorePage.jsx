@@ -110,7 +110,7 @@ function StorePage() {
   };
 
   const applyFilters = () => {
-    let updatedList = [...products];
+    let updatedList = products;
 
     // Editorial Filter
     if (selectedEditorial) {

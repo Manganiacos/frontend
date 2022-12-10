@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence, motion, useCycle } from 'framer-motion';
 
 import { useNavigate, useParams, Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { listProductDetails } from '../actions/productActions';
 
 import { addToFavorite } from '../actions/favoriteActions';
@@ -243,7 +244,8 @@ function ProductPage() {
               </h1>
             </span> */}
               <button type="button" onClick={open}>
-                <img
+                <LazyLoadImage
+                  effect="blur"
                   src={product.image}
                   alt={product.name}
                   className="relative rounded-md w-[350px] h-[500px] object-cover shadow-md cursor-zoom-in"
@@ -280,7 +282,8 @@ function ProductPage() {
           <div className="grid grid-cols-2 gap-0">
             <div className="col-span-2 flex flex-col items-center gap-4 relative pt-8 px-8">
               <button type="button" onClick={open}>
-                <img
+                <LazyLoadImage
+                  effect="blur"
                   src={product.image}
                   alt={product.name}
                   className="relative rounded-md w-[350px] h-[500px] object-cover shadow-md cursor-zoom-in"
@@ -457,7 +460,8 @@ function ProductPage() {
                   <Close className="fill-white/50 hover:fill-white" />
                 </button>
               </span>
-              <img
+              <LazyLoadImage
+                effect="blur"
                 src={product.image}
                 alt={product.name}
                 className="relative rounded-md object-cover w-full xl:h-[40em] h-96"

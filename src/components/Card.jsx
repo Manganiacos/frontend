@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+// import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import Cart from '../assets/svg/cart';
 import Product from './Product';
@@ -35,7 +35,6 @@ function Card({ product, setListProduct, cycleOpenProduct }) {
         <div className="flex justify-center items-center relative py-4 px-12">
           <Link to={`/product/${product._id}`}>
             <LazyLoadImage
-              effect="none"
               src={product.image}
               alt={product.name}
               className=" w-full h-56 object-cover relative shadow-lg rounded-lg"
