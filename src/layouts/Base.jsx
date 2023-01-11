@@ -7,6 +7,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import NotFoundPage from '../pages/NotFoundPage';
 import HomePage from '../pages/HomePage';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import StorePage from '../pages/StorePage';
 import ProductPage from '../pages/ProductPage';
 import Checkout from './Checkout';
@@ -40,6 +41,7 @@ function Base() {
           <Route path="/auth/register" element={<RegisterPageAuth />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <Footer />
       </Router>
     </main>
   );

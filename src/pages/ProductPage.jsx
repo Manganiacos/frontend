@@ -90,7 +90,12 @@ function ProductPage() {
 
   return (
     <>
-      <SEO title={title} description="Manganiacos" />
+      <SEO
+        title={title}
+        description={product.description}
+        image={product.image}
+        twitter={product.image}
+      />
       <section className="container mx-auto pt-4 pb-56">
         <div className="flex flex-row gap-4 xl:px-0 px-8 items-center">
           <Link to="/store">

@@ -109,7 +109,7 @@ function News() {
     };
 
   const dateNow = parseDate(['m', 'd', 'y'], '/', `${today}`);
-  console.log('HOY:', dateNow);
+  // console.log('HOY:', dateNow);
 
   const dias = [
     'domingo',
@@ -122,19 +122,19 @@ function News() {
   ];
 
   const numeroDia = new Date(today).getDay();
-  console.log('numeroDia:', numeroDia);
+  // console.log('numeroDia:', numeroDia);
 
   const nombreDia = dias[numeroDia];
-  console.log('nombreDia:', nombreDia);
+  // console.log('nombreDia:', nombreDia);
 
   const dates = parseDate(['d', 'm', 'y'], '/', '27/08/2022');
-  console.log('dates:', dates);
+  // console.log('dates:', dates);
 
   const [available, setAvailable] = useState(dates);
-  console.log('available:', available);
+  // console.log('available:', available);
 
-  console.log('date:', available);
-  console.log('products:', productsWithDate);
+  // console.log('date:', available);
+  // console.log('products:', productsWithDate);
 
   const onlyUSUntil = filterByDatePattern(['d', 'm', 'y'], '/');
   const filter = onlyUSUntil(available, productsWithDate);
@@ -143,7 +143,7 @@ function News() {
   const setDate = () => {
     if (nombreDia === 'martes') {
       setAvailable(dateNow);
-      console.log('Hoy es martes');
+      // console.log('Hoy es martes');
     }
   };
 

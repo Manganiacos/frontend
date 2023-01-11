@@ -6,7 +6,7 @@ import DeliveryRepo from '../assets/svg/svgRepos/deliveryRepo';
 
 function HomeMore() {
   return (
-    <section className="flex flex-col pt-20 px-8 xl:px-40 pb-[500px]">
+    <section className="flex flex-col pt-20 px-8 xl:px-40 pb-44">
       <span className="flex flex-row gap-1 items-center justify-center">
         {/* <svg
           xmlns="http://www.w3.org/2000/svg"

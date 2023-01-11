@@ -72,13 +72,6 @@ function StorePage() {
 
   const [searchInput, setSearchInput] = useState('');
 
-  // const handleSearch = async (e) => {
-  //   e.preventDefault();
-  //   await dispatch(listProducts(`?keyword=${searchInput}`));
-  //   currentPage === 1 ? setCurrentPage(1) : setCurrentPage(1);
-  //   setList(products);
-  // };
-
   const handleSelectEditorial = (event, value) =>
     !value ? null : setSelectedEditorial(value);
 
@@ -89,13 +82,6 @@ function StorePage() {
     );
     setCategories(changeCheckedCategories);
   };
-
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    // return products.slice(firstPageIndex, lastPageIndex);
-    return list.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, products, list]);
 
   const handleClearFilters = () => {
     setList(products);
@@ -109,14 +95,21 @@ function StorePage() {
     setSelectedEditorial(null);
   };
 
-  const applyFilters = () => {
-    let updatedList = products;
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(listProducts(`?keyword=${searchInput}`));
+    currentPage === 1 ? setCurrentPage(1) : setCurrentPage(1);
+    setList(products);
+  };
 
+  const applyFilters = () => {
+    let updateProductList = products;
     // Editorial Filter
     if (selectedEditorial) {
-      updatedList = updatedList.filter(
+      updateProductList = updateProductList.filter(
         (item) => item.editorial === selectedEditorial
       );
+      currentPage === 1 ? setCurrentPage(1) : setCurrentPage(1);
     }
 
     // Category Filter
@@ -125,37 +118,42 @@ function StorePage() {
       .map((item) => item.label.toLowerCase());
 
     if (categoriesChecked.length) {
-      updatedList = updatedList.filter((item) =>
+      updateProductList = updateProductList.filter((item) =>
         categoriesChecked.includes(item.category)
       );
+      // console.log('categories:', updateProductList);
+      currentPage === 1 ? setCurrentPage(1) : setCurrentPage(1);
     }
 
-    // Search Filter
-    if (searchInput) {
-      updatedList = updatedList.filter((item) =>
-        item.name.toLowerCase().includes(searchInput.toLowerCase())
-      );
-    }
-
-    setList(updatedList);
-    !updatedList.length ? setResultsFound(false) : setResultsFound(true);
+    // console.log('updateProductList:', updateProductList);
+    setList(updateProductList);
   };
-  // console.log('products:', list);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+
+    return products.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, products, list]);
 
   useEffect(() => {
     if (searchInput === '') {
       dispatch(listProducts(keyword));
-      // setList(products);
     }
     // dispatch(listProducts(keyword));
 
     applyFilters();
   }, [dispatch, selectedEditorial, categories, searchInput, keyword]);
 
+  // console.log('products:', productList.products);
+
   return (
     <>
-      <SEO title="Tienda Comics y Mangas" description="Manganiacos" />
-      <section className="container mx-auto grid grid-cols-4 gap-6 pt-12 pb-96 h-full xl:px-0 px-8">
+      <SEO title="Manganiacos" />
+      <form
+        onSubmit={handleSearch}
+        className="container mx-auto grid grid-cols-4 gap-6 pt-12 pb-32 h-full xl:px-0 px-8"
+      >
         <span className="hidden xl:block">
           <FilterPanel
             clearFilters={handleClearFilters}
@@ -167,7 +165,7 @@ function StorePage() {
           />
         </span>
         <section className="xl:col-span-3 col-span-4 flex flex-col gap-8">
-          <span className="flex gap-4 w-full items-center">
+          <div className="flex gap-4 w-full items-center">
             <SearchBar
               value={searchInput}
               changeInput={(e) => setSearchInput(e.target.value)}
@@ -183,40 +181,34 @@ function StorePage() {
                 <Filter className="fill-white/80" />
               </button>
             </div>
-          </span>
+          </div>
           <div>
-            {resultsFound ? (
-              <>
-                {loading ? (
-                  <CardLoader />
-                ) : (
-                  <>
-                    {list.length > 0 ? (
-                      <div className="flex flex-col gap-8 items-center">
-                        <ListProduct products={currentTableData} />
-                        <Pagination
-                          currentPage={currentPage}
-                          totalCount={list.length}
-                          pageSize={PageSize}
-                          onPageChange={(page) => setCurrentPage(page)}
-                        />
-                      </div>
-                    ) : (
-                      <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl xl:h-80 h-56 text-center">
-                        No se encontraron resultados para tu búsqueda
-                      </span>
-                    )}
-                  </>
-                )}
-              </>
-            ) : (
-              <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl xl:h-80 h-56 text-center">
-                No se encontraron resultados para tu búsqueda
-              </span>
-            )}
+            <>
+              {loading ? (
+                <CardLoader />
+              ) : (
+                <>
+                  {list.length || products.length > 0 ? (
+                    <div className="flex flex-col gap-8 items-center">
+                      <ListProduct products={currentTableData} />
+                      <Pagination
+                        currentPage={currentPage}
+                        totalCount={list.length || products.length}
+                        pageSize={PageSize}
+                        onPageChange={(page) => setCurrentPage(page)}
+                      />
+                    </div>
+                  ) : (
+                    <span className="col-span-4 flex justify-center items-center text-white font-bold text-xl xl:h-80 h-56 text-center">
+                      No se encontraron resultados para tu búsqueda
+                    </span>
+                  )}
+                </>
+              )}
+            </>
           </div>
         </section>
-      </section>
+      </form>
     </>
   );
 }
